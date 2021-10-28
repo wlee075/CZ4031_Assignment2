@@ -1,0 +1,45 @@
+{
+    "Node Type": "Aggregate",
+    "Strategy": "Hashed",
+    "Partial Mode": "Simple",
+    "Parallel Aware": false,
+    "Startup Cost": 18582.36,
+    "Total Cost": 18680.99,
+    "Plan Rows": 7890,
+    "Plan Width": 41,
+    "Group Key": [
+        "upper((title_abbrev)::text)"
+    ],
+    "Plans": [
+        {
+            "Node Type": "Aggregate",
+            "Strategy": "Hashed",
+            "Partial Mode": "Simple",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Startup Cost": 18464.01,
+            "Total Cost": 18562.64,
+            "Plan Rows": 7890,
+            "Plan Width": 41,
+            "Group Key": [
+                "title_abbrev",
+                "year"
+            ],
+            "Filter": "(count(title_abbrev) > 200)",
+            "Plans": [
+                {
+                    "Node Type": "Seq Scan",
+                    "Parent Relationship": "Outer",
+                    "Parallel Aware": false,
+                    "Relation Name": "publication",
+                    "Alias": "p",
+                    "Startup Cost": 0.0,
+                    "Total Cost": 18400.83,
+                    "Plan Rows": 8424,
+                    "Plan Width": 9,
+                    "Filter": "(((pub_class)::text = 'inproceedings'::text) AND (month = 7))"
+                }
+            ]
+        }
+    ]
+}

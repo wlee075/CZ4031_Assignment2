@@ -1,0 +1,37 @@
+{
+    "Node Type": "Nested Loop",
+    "Parallel Aware": false,
+    "Join Type": "Semi",
+    "Startup Cost": 0.43,
+    "Total Cost": 18484.88,
+    "Plan Rows": 1,
+    "Plan Width": 106,
+    "Plans": [
+        {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "publication",
+            "Alias": "publication",
+            "Startup Cost": 0.0,
+            "Total Cost": 18400.83,
+            "Plan Rows": 9,
+            "Plan Width": 106,
+            "Filter": "((year = 2015) AND ((title_abbrev)::text = 'wasa'::text))"
+        },
+        {
+            "Node Type": "Index Only Scan",
+            "Parent Relationship": "Inner",
+            "Parallel Aware": false,
+            "Scan Direction": "Forward",
+            "Index Name": "pub_auth_pkey",
+            "Relation Name": "pub_auth",
+            "Alias": "pub_auth",
+            "Startup Cost": 0.43,
+            "Total Cost": 8.45,
+            "Plan Rows": 1,
+            "Plan Width": 23,
+            "Index Cond": "((pub_key = (publication.pub_key)::text) AND (author = 'Hongli Xu'::text))"
+        }
+    ]
+}

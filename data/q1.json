@@ -1,0 +1,27 @@
+{
+    "Node Type": "Aggregate",
+    "Strategy": "Hashed",
+    "Partial Mode": "Simple",
+    "Parallel Aware": false,
+    "Startup Cost": 124276.94,
+    "Total Cost": 124277.0,
+    "Plan Rows": 6,
+    "Plan Width": 18,
+    "Group Key": [
+        "pub_class"
+    ],
+    "Plans": [
+        {
+            "Node Type": "Seq Scan",
+            "Parent Relationship": "Outer",
+            "Parallel Aware": false,
+            "Relation Name": "publication",
+            "Alias": "publication",
+            "Startup Cost": 0.0,
+            "Total Cost": 110803.6,
+            "Plan Rows": 2694667,
+            "Plan Width": 10,
+            "Filter": "((year < 2018) AND (year > 1999))"
+        }
+    ]
+}
