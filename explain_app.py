@@ -14,12 +14,10 @@ except ImportError:
     from tkinter import *
 
 from query_executor.explain_query import Explain
-from voice_the_string.vocalize import Vocalizator
 
 class QueryPlanApp(Tk):
     """ App class for Query Plan """
     def __init__(self, parent, host, port, dbname, user, password):
-        self.vocalizator = Vocalizator()
         self.explanator = Explain(
             host, port, dbname, user, password,
             desc=False, voice=False, debug=False
@@ -67,12 +65,13 @@ class QueryPlanApp(Tk):
         self.entry_password.grid(column=1, row=4, columnspan=3, sticky='EW')
         self.entry_var_password.set(password)
 
+        '''button to derive query plan'''
         self.label_query = Label(self, text="Query:", anchor="w")
         self.label_query.grid(column=0, row=5, columnspan=1, sticky='W')
         self.frame_query = Frame(self)
         self.frame_query.grid(column=1, row=6, columnspan=6, rowspan=1, sticky='W')
         self.button_query = Button(
-            self.frame_query, text="Explain",
+            self.frame_query, text="Derive query plan",
             width=20, command=self.explain_query)
         self.button_query.pack(side=BOTTOM)
         self.entry_query = Text(self.frame_query, height=10, wrap=WORD)
@@ -83,6 +82,7 @@ class QueryPlanApp(Tk):
         self.grid()
         self.scrollbar_query.pack(side='right', fill='y')
 
+        '''button to parse query plan, annotate'''
         self.label_plan = Label(self, text="Query Plan:", anchor="w")
         self.label_plan.grid(column=0, row=8, columnspan=1, sticky='W')
         self.frame_plan = Frame(self)
@@ -103,10 +103,7 @@ class QueryPlanApp(Tk):
         self.label_parsed_plan.grid(column=0, row=10, columnspan=1, sticky='W')
         self.frame_parsed_plan = Frame(self)
         self.frame_parsed_plan.grid(column=1, row=11, columnspan=6, rowspan=1, sticky='W')
-        self.button_parsed_plan = Button(
-            self.frame_parsed_plan, text="Vocalize",
-            width=20, command=self.vocalize_parsed_plan)
-        self.button_parsed_plan.pack(side=BOTTOM)
+        #self.button_parsed_plan.pack(side=BOTTOM)
         self.entry_parsed_plan = Text(self.frame_parsed_plan, height=10, wrap=WORD)
         self.entry_parsed_plan.pack(side='left', fill='both', expand=True)
         self.scrollbar_parsed_plan = Scrollbar(self.frame_parsed_plan)
@@ -136,12 +133,6 @@ class QueryPlanApp(Tk):
         parsed_plan = self.explanator.parse(query_plan)
         self.entry_parsed_plan.delete("1.0", END)
         self.entry_parsed_plan.insert("1.0", json.dumps(parsed_plan, indent=4))
-
-    def vocalize_parsed_plan(self):
-        """ Vocalize parsed plan """
-        parsed_plan = self.entry_parsed_plan.get("1.0", END)
-        self.vocalizator.voice(parsed_plan)
-
 
 def init_logger(log_file):
     """ Initialize logger """
@@ -174,7 +165,7 @@ def main():
     app.title('Postgres Query Explainator')
     app.mainloop()
 
-    logging.info("Finish logging")
+    logging.info("Finished logging")
 
 if __name__ == "__main__":
     main()
