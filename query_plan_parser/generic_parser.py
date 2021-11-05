@@ -3,11 +3,11 @@ Generic Parser
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def generic_parser(plan, start=False):
     """ Parse unknown node_type """
-    parsed_plan = query_plan_parser.parser.get_conjuction(start)
+    parsed_plan = query_plan_parser.annotation.get_conjuction(start)
     parsed_plan += "do " + plan["Node Type"] + "."
     if "Plans" in plan:
         for child in plan["Plans"]:

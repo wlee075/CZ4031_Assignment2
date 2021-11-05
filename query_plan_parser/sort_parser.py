@@ -4,7 +4,7 @@ https://www.depesz.com/2013/05/09/explaining-the-unexplainable-part-3/
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def sort_parser(plan, start=False):
     """ Sort Parser """
@@ -13,14 +13,14 @@ def sort_parser(plan, start=False):
     # Get the text of it's child before if exists
     if "Plans" in plan:
         for child in plan["Plans"]:
-            temp = query_plan_parser.parser.parse_plan(child, start)
+            temp = query_plan_parser.annotation.parse_plan(child, start)
             result += temp + " "
             if start:
                 start = False
 
     # Parse the Sort
     if plan["Node Type"] == "Sort":
-        result += query_plan_parser.parser.get_conjuction(start)
+        result += query_plan_parser.annotation.get_conjuction(start)
         result += "the result is sorted by using attribute "
         if "DESC" in plan["Sort Key"]:
             result += str(plan["Sort Key"].replace('DESC', '')) +" in desceding order."

@@ -4,11 +4,11 @@ https://www.depesz.com/2013/05/09/explaining-the-unexplainable-part-3/
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def seq_scan_parser(plan, start=False):
     """ Parser for the Seq Scan Node Type"""
-    sentence = query_plan_parser.parser.get_conjuction(start)
+    sentence = query_plan_parser.annotation.get_conjuction(start)
     sentence += "it does a sequential scan on relation "
     if "Relation Name" in plan:
         sentence += plan['Relation Name']

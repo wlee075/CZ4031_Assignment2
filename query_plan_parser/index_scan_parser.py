@@ -4,11 +4,11 @@ https://www.depesz.com/2013/04/27/explaining-the-unexplainable-part-2/
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def index_scan_parser(plan, start=False):
     """ Index Scan parser """
-    result = query_plan_parser.parser.get_conjuction(start)
+    result = query_plan_parser.annotation.get_conjuction(start)
 
     #Parse the index scan or index only scan
     if plan["Node Type"] == "Index Scan":

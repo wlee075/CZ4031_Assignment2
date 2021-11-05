@@ -4,7 +4,7 @@ https://www.depesz.com/2013/05/19/explaining-the-unexplainable-part-4/
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def append_parser(plan, start=False):
     """ Append Parser """
@@ -13,14 +13,14 @@ def append_parser(plan, start=False):
     # Get the text of it's child before if exists
     if "Plans" in plan:
         for child in plan["Plans"]:
-            temp = query_plan_parser.parser.parse_plan(child, start)
+            temp = query_plan_parser.annotation.parse_plan(child, start)
             if start:
                 start = False
             result += temp + " "
 
     #Parse the values scan
     if plan["Node Type"] == "Append":
-        result += query_plan_parser.parser.get_conjuction(start)
+        result += query_plan_parser.annotation.get_conjuction(start)
         result += "all of the scan results is combined as one resultset."
 
     return result

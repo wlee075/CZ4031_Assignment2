@@ -4,12 +4,12 @@ https://www.depesz.com/2013/05/19/explaining-the-unexplainable-part-4/
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def unique_parser(plan, start=False):
     """Parser function for node type unique"""
-    parsed_plan = query_plan_parser.parser.parse_plan(plan["Plans"][0], start) + " "
-    parsed_plan += query_plan_parser.parser.get_conjuction()
+    parsed_plan = query_plan_parser.annotation.parse_plan(plan["Plans"][0], start) + " "
+    parsed_plan += query_plan_parser.annotation.get_conjuction()
     parsed_plan += "on the sorted data, it scans each row and "
     parsed_plan += "discards those with the same value as the previous row."
     return parsed_plan

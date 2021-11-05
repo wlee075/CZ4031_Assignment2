@@ -4,7 +4,7 @@ https://www.depesz.com/2013/05/09/explaining-the-unexplainable-part-3/
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def materialize_parser(plan, start=False):
     """ Materialize parser """
@@ -13,14 +13,14 @@ def materialize_parser(plan, start=False):
     # Get the text of it's child before if exists
     if "Plans" in plan:
         for child in plan["Plans"]:
-            temp = query_plan_parser.parser.parse_plan(child, start)
+            temp = query_plan_parser.annotation.parse_plan(child, start)
             result += temp + " "
             if start:
                 start = False
 
     #Parse the materialize
     if plan["Node Type"] == "Materialize":
-        result += query_plan_parser.parser.get_conjuction(start)
+        result += query_plan_parser.annotation.get_conjuction(start)
         result += "the results are stored in memory for faster access. "
 
     return result

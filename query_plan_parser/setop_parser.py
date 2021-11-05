@@ -4,12 +4,12 @@ https://www.depesz.com/2013/05/19/explaining-the-unexplainable-part-4/
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def setop_parser(plan, start=False):
     """ SetOp Parser """
-    result = query_plan_parser.parser.parse_plan(plan["Plans"][0], start)
-    result += " " + query_plan_parser.parser.get_conjuction()
+    result = query_plan_parser.annotation.parse_plan(plan["Plans"][0], start)
+    result += " " + query_plan_parser.annotation.get_conjuction()
     result += "it finds the "
     cmd_name = str(plan["Command"])
     if cmd_name == "Except" or cmd_name == "Except All":

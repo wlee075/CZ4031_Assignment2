@@ -3,15 +3,15 @@ Parser for GroupAggregate node type
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def aggregate_parser(plan, start=False):
     """ Parser for Aggregate node type """
 
     if plan["Strategy"] == "Sorted":
-        parsed_plan = query_plan_parser.parser.parse_plan(plan["Plans"][0], start)
+        parsed_plan = query_plan_parser.annotation.parse_plan(plan["Plans"][0], start)
 
-        parsed_plan += " " + query_plan_parser.parser.get_conjuction()
+        parsed_plan += " " + query_plan_parser.annotation.get_conjuction()
 
         if "Group Key" in plan:
             parsed_plan += "the result is grouped by "
@@ -24,7 +24,7 @@ def aggregate_parser(plan, start=False):
         return parsed_plan
 
     if plan["Strategy"] == "Hashed":
-        sentence = query_plan_parser.parser.get_conjuction()
+        sentence = query_plan_parser.annotation.get_conjuction()
 
         if len(plan["Group Key"]) == 1:
             sentence += "it hashes all the rows based on the key "
@@ -35,13 +35,13 @@ def aggregate_parser(plan, start=False):
                 sentence += i.replace("::text", "") + ", "
         sentence += "then returns the desired row after manipulation."
 
-        parsed_plan = query_plan_parser.parser.parse_plan(plan["Plans"][0], start)
+        parsed_plan = query_plan_parser.annotation.parse_plan(plan["Plans"][0], start)
         parsed_plan += " " + sentence
         return parsed_plan
 
     if plan["Strategy"] == "Plain":
-        parsed_plan = query_plan_parser.parser.parse_plan(plan["Plans"][0], start) + " "
-        parsed_plan += query_plan_parser.parser.get_conjuction()
+        parsed_plan = query_plan_parser.annotation.parse_plan(plan["Plans"][0], start) + " "
+        parsed_plan += query_plan_parser.annotation.get_conjuction()
         parsed_plan += "the result is aggregated."
         return parsed_plan
 

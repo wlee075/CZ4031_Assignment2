@@ -3,7 +3,7 @@ Subquery scan parser
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def subquery_scan_parser(plan, start=False):
     """ Subquery scan parser """
@@ -11,11 +11,11 @@ def subquery_scan_parser(plan, start=False):
 
     if 'Plans' in plan:
         for child in plan['Plans']:
-            result += query_plan_parser.parser.parse_plan(child, start) + " "
+            result += query_plan_parser.annotation.parse_plan(child, start) + " "
             if start:
                 start = False
 
-    result += query_plan_parser.parser.get_conjuction(start)
+    result += query_plan_parser.annotation.get_conjuction(start)
     result += 'Subquery Scan is performed on the result from '
     result += 'the previous operations and output it without any changes '
     result += '(the purpose of Subquery scan is mainly for internal bookkeeping).'
