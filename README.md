@@ -38,7 +38,6 @@ Project 2 CZ4031 Nanyang Technological University. Script to generate and parse 
 - Enter `host`, `database`, `port`, `username` and `password`
 - To generate query plan: Enter query in `Query` section and press `Explain`
 - To parse query plan: Enter query plan in `Query Plan` section or directly press `Parse`
-- To vocalize query plan: Enter parsed query plan in `Parsed Query Plan` section and press `Vocalize`
 
 ### Test
 
