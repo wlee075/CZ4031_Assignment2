@@ -1,5 +1,5 @@
 """
-Hash Join parser
+File for Hash Join 
 """
 
 import json
@@ -15,7 +15,7 @@ def hash_join_parser(plan, start=False):
     result += "The result from previous operation is joined using Hash "
     result += plan["Join Type"] + " Join"
     if 'Hash Cond' in plan:
-        result += ' with condition ' + plan['Hash Cond'].replace("::text", "") + '.'
+        result += ' with the condition ' + plan['Hash Cond'].replace("::text", "") + '.'
     else:
         result += '.'
 

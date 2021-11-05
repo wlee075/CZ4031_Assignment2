@@ -1,6 +1,5 @@
 """
 Parser for append node type
-https://www.depesz.com/2013/05/19/explaining-the-unexplainable-part-4/
 """
 
 import json
@@ -21,7 +20,7 @@ def append_parser(plan, start=False):
     #Parse the values scan
     if plan["Node Type"] == "Append":
         result += query_plan_parser.annotation.get_conjuction(start)
-        result += "all of the scan results is combined as one resultset."
+        result += "all of the scan results is combined into one."
 
     return result
 

@@ -19,7 +19,7 @@ def aggregate_parser(plan, start=False):
                 parsed_plan += group_key.replace("::text", "") + ", "
             parsed_plan = parsed_plan[:-2]
         if "Filter" in plan:
-            parsed_plan += " and bounded with condition " + plan["Filter"].replace("::text", "")
+            parsed_plan += " and bounded with the condition(s) " + plan["Filter"].replace("::text", "")
         parsed_plan += "."
         return parsed_plan
 
@@ -33,7 +33,7 @@ def aggregate_parser(plan, start=False):
             sentence += "it hashes all the rows based on the keys "
             for i in plan["Group Key"]:
                 sentence += i.replace("::text", "") + ", "
-        sentence += "then returns the desired row after manipulation."
+        sentence += "then returns the desired row after processing."
 
         parsed_plan = query_plan_parser.annotation.parse_plan(plan["Plans"][0], start)
         parsed_plan += " " + sentence
@@ -42,7 +42,7 @@ def aggregate_parser(plan, start=False):
     if plan["Strategy"] == "Plain":
         parsed_plan = query_plan_parser.annotation.parse_plan(plan["Plans"][0], start) + " "
         parsed_plan += query_plan_parser.annotation.get_conjuction()
-        parsed_plan += "the result is aggregated."
+        parsed_plan += "the result will be aggregated."
         return parsed_plan
 
 

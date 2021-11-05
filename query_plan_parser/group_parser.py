@@ -1,6 +1,5 @@
 """
 File to parse node type group
-https://www.depesz.com/2013/05/09/explaining-the-unexplainable-part-3/
 """
 
 import json
@@ -14,7 +13,7 @@ def group_parser(plan, start=False):
         parsed_plan += "the result from the previous operation is grouped together using the key "
         parsed_plan += plan["Group Key"][0].replace("::text", "") + "."
     else:
-        parsed_plan += "the result from the previous operation is grouped together using the keys "
+        parsed_plan += "result from the previous operation is grouped together using the key "
         for i in plan["Group Key"][:-1]:
             parsed_plan += i.replace("::text", "") + ", "
         parsed_plan += plan["Group Key"][-1].replace("::text", "") + "."

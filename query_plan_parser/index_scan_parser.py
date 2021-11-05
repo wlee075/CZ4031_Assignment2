@@ -1,6 +1,5 @@
 """
 Parser for index scan node type
-https://www.depesz.com/2013/04/27/explaining-the-unexplainable-part-2/
 """
 
 import json
@@ -12,9 +11,9 @@ def index_scan_parser(plan, start=False):
 
     #Parse the index scan or index only scan
     if plan["Node Type"] == "Index Scan":
-        result += "it does an index scan by using an index table "+ plan["Index Name"]
+        result += "index scan is done by using an index table "+ plan["Index Name"]
         if "Index Cond" in plan:
-            result += " with conditions "+ plan["Index Cond"].replace('::text', '')
+            result += " with the conditions "+ plan["Index Cond"].replace('::text', '')
         result += ". Next, it opens the " + plan["Relation Name"]
         result += " table and fetches rows pointed by index matched in the scan."
 
@@ -25,7 +24,7 @@ def index_scan_parser(plan, start=False):
         result += "it does an index scan by using an index table "+ plan["Index Name"]
         if "Index Cond" in plan:
             result += " with condition(s) "+ plan["Index Cond"].replace('::text', '')
-        result += ". It then returns the matches found in index table scan as the result."
+        result += ". It returns the matches found in index table scan as the result."
         if "Filter" in plan:
             result += " The result is then filtered by "+ plan["Filter"].replace('::text', '') +"."
 

@@ -1,6 +1,5 @@
 """
 Parser for sort node type
-https://www.depesz.com/2013/05/09/explaining-the-unexplainable-part-3/
 """
 
 import json
@@ -23,7 +22,7 @@ def sort_parser(plan, start=False):
         result += query_plan_parser.annotation.get_conjuction(start)
         result += "the result is sorted by using attribute "
         if "DESC" in plan["Sort Key"]:
-            result += str(plan["Sort Key"].replace('DESC', '')) +" in desceding order."
+            result += str(plan["Sort Key"].replace('DESC', '')) +" in descending order."
         elif "INC" in plan["Sort Key"]:
             result += str(plan["Sort Key"].replace('INC', '')) +" in increasing order."
         else:

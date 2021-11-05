@@ -1,6 +1,5 @@
 """
 File to parse node type function scan
-https://www.depesz.com/2013/05/09/explaining-the-unexplainable-part-3/
 """
 
 import json
@@ -10,7 +9,7 @@ def function_scan_parser(plan, start=False):
     """ Parser for Function Scan node type """
     parsed_plan = query_plan_parser.annotation.get_conjuction(start)
     parsed_plan += "it runs the function " + plan["Function Name"]
-    parsed_plan += " and returns the recordset created by it."
+    parsed_plan += " and returns the recordset created."
     return parsed_plan
 
 
