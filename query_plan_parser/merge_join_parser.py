@@ -1,6 +1,5 @@
 """
 Merge Join parser
-http://www.postgresql-archive.org/Query-plan-for-Merge-Semi-Join-td5990041.html
 """
 
 import json
@@ -17,13 +16,13 @@ def merge_join_parser(plan, start=False):
                 start = False
 
     result += query_plan_parser.annotation.get_conjuction(start)
-    result += 'the result from previous operation is joined using Merge Join'
+    result += 'the result from previous operation is then joined using Merge Join'
 
     if 'Merge Cond' in plan:
         result += ' with condition ' + plan['Merge Cond'].replace("::text", "")
 
     if 'Join Type' == 'Semi':
-        result += ' but only the row from the left relation is returned.'
+        result += ' but only the row from the left relation will be returned.'
     else:
         result += '.'
 

@@ -1,6 +1,5 @@
 """
 Parser for materialize node type
-https://www.depesz.com/2013/05/09/explaining-the-unexplainable-part-3/
 """
 
 import json
@@ -21,7 +20,7 @@ def materialize_parser(plan, start=False):
     #Parse the materialize
     if plan["Node Type"] == "Materialize":
         result += query_plan_parser.annotation.get_conjuction(start)
-        result += "the results are stored in memory for faster access. "
+        result += "the results will be stored in the memory for more efficient access. "
 
     return result
 

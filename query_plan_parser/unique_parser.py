@@ -1,6 +1,5 @@
 """
 File to parse node type unique
-https://www.depesz.com/2013/05/19/explaining-the-unexplainable-part-4/
 """
 
 import json
@@ -11,7 +10,7 @@ def unique_parser(plan, start=False):
     parsed_plan = query_plan_parser.annotation.parse_plan(plan["Plans"][0], start) + " "
     parsed_plan += query_plan_parser.annotation.get_conjuction()
     parsed_plan += "on the sorted data, it scans each row and "
-    parsed_plan += "discards those with the same value as the previous row."
+    parsed_plan += "discards the rows with the same value as the previous row."
     return parsed_plan
 
 if __name__ == "__main__":

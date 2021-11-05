@@ -1,6 +1,5 @@
 """
 Parser for SetOp node type
-https://www.depesz.com/2013/05/19/explaining-the-unexplainable-part-4/
 """
 
 import json

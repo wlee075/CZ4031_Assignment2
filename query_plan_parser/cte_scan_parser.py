@@ -1,6 +1,5 @@
 """
 Parser for CTE scan node type
-https://www.depesz.com/2013/05/19/explaining-the-unexplainable-part-4/
 """
 
 import json
@@ -12,14 +11,14 @@ def cte_scan_parser(plan, start=False):
 
     # Parse the values scan
     if plan["Node Type"] == "CTE Scan":
-        result += "it does a CTE scan through the table "
-        result += str(plan["CTE Name"]) + " which is stored in memory "
+        result += "it does a CTE scan throughout the table "
+        result += str(plan["CTE Name"]) + " which will be stored in the memory "
         if "Index Cond" in plan:
             result += " with condition(s) "+ plan["Index Cond"].replace('::text', '')
         result += "."
 
         if "Filter" in plan:
-            result += " The results then filtered by "+ plan["Filter"].replace('::text', '') +"."
+            result += " The results will be filtered by "+ plan["Filter"].replace('::text', '') +"."
 
     return result
 

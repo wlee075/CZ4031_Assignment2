@@ -17,7 +17,7 @@ def subquery_scan_parser(plan, start=False):
 
     result += query_plan_parser.annotation.get_conjuction(start)
     result += 'Subquery Scan is performed on the result from '
-    result += 'the previous operations and output it without any changes '
+    result += 'the previous operations and output the result without any changes '
     result += '(the purpose of Subquery scan is mainly for internal bookkeeping).'
 
     return result

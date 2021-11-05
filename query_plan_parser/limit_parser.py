@@ -1,6 +1,5 @@
 """
 File to parse node type limit
-https://www.depesz.com/2013/05/09/explaining-the-unexplainable-part-3/
 """
 
 import json
@@ -9,7 +8,7 @@ import query_plan_parser.annotation
 def limit_parser(plan, start=False):
     """Parser function for node type limit"""
     parsed_plan = query_plan_parser.annotation.parse_plan(plan["Plans"][0], start)
-    parsed_plan += " Instead of scanning the whole table, however, it only does so with a limit of "
+    parsed_plan += " Instead of scanning the whole table, it only does so with a limit of "
     total_rows = plan["Plan Rows"]
     parsed_plan += str(total_rows) + " entries."
     return parsed_plan

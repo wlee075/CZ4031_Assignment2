@@ -1,6 +1,5 @@
 """
 Parser for nested loop node type
-https://www.depesz.com/2013/05/09/explaining-the-unexplainable-part-3/
 """
 
 import json
@@ -18,7 +17,7 @@ def nested_loop_parser(plan, start=False):
 
 
     # Parse the nested loop
-    result += "Then, the join result between both scan results are returned as new rows."
+    result += "Afterwards, the join result between both scan results are returned as new rows."
 
     return result
 
