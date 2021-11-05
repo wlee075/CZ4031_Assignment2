@@ -4,11 +4,10 @@
         "port": "5432",
         "database": "TPC-H",
         "username": "postgres",
-        "password": "admin"   
+        "password": "root"   
     },
     "cli":{
         "desc_plan": true,
-        "voice_plan": true,
         "debug_plan": false
     },
     "log":{
