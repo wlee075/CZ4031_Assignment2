@@ -56,10 +56,6 @@ Connect to PostgreSQL and act as backend of the CLI and GUI. Use query plan pars
 
 Receive query plan in JSON format. Parse the query plan recursively and return the parsed plan string.
 
-### Voice The String
-
-Platform independent Text-To-Speech. Vocalize the input string (in english).
-
 ## Content
 
 ### Handled Operation
