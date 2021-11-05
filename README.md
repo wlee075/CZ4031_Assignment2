@@ -1,4 +1,4 @@
-# vocalize-your-plan
+# Annotate-Query
 
 Project 2 CZ4031 Nanyang Technological University. Script to generate and parse query execution plan from a given query or query plan (in JSON format).
 
