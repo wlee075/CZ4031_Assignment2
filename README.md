@@ -95,4 +95,11 @@ The following operation is supported in this [parser](query_plan_parser/):
 
 The example query can be found [here](data/):
 - [Query 1](data/q1.sql)
+- [Query 3](data/q3.sql)
+- [Query 5](data/q5.sql)
+- [Query 6](data/q6.sql)
+- [Query 10](data/q10.sql)
+- [Query 12](data/q12.sql)
+- [Query 14](data/q14.sql)
+- [Query 19](data/q19.sql)
 
