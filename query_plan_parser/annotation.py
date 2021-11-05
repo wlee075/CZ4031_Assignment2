@@ -28,6 +28,7 @@ class ParserSelector:
     """ ParserSelectorClass """
     def __init__(self):
         """ Init Class """
+        
         self.generic_parser = generic.generic_parser
 
         self.Hash_Join = hash_join.hash_join_parser
@@ -50,37 +51,42 @@ class ParserSelector:
         self.SetOp = setop.setop_parser
         self.Group = group.group_parser
 
-
 def parse_plan(plan, start=False):
+
     """ Parse json format of query plan """
+    
     selector = ParserSelector()
     try:
         parser = getattr(selector, plan["Node Type"].replace(" ", "_"))
     except:
         parser = selector.generic_parser
-    parsed_plan = initplan(plan, start)
+    parsed_plan = init_plan(plan, start)
     parsed_plan += parser(plan, start)
     return parsed_plan
 
-CONJUNCTION_LIST = ["Next, ", "After that, ", "Then, ", "Subsequently, "]
+CONJUNCTION_LIST = ["Next, ", "Afterwards, ", "Thereafter, ", "Subsequently, ", "Then, "]
 
 def get_conjuction(start=False):
+
     """ Get random conjuction """
+    
     if start:
-        return "First, "
+        return "Firstly, "
     return random.choice(CONJUNCTION_LIST)
 
-def initplan(plan, start=False):
+def init_plan(plan, start=False):
+
     """ Check for InitPlan """
+    
     result = ""
 
     if "Parent Relationship" in plan:
         if plan["Parent Relationship"] == "InitPlan":
             result = get_conjuction(start)
             result += "the " + plan["Node Type"]
-            result += " node and its subsequent child node is executed first"
-            result += " since the result from this node needs to be calculated first"
+            result += " node and its subsequent child node will be executed first"
+            result += " since the result from this node needs to be calculated initially"
             result += " and it is only calculated once for the whole query. "
-            result += "The plan is as follows:"
+            result += "The plan is as follows: "
 
     return result

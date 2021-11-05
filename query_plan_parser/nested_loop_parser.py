@@ -4,16 +4,16 @@ https://www.depesz.com/2013/05/09/explaining-the-unexplainable-part-3/
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def nested_loop_parser(plan, start=False):
     """ Nested Loop Parser """
     result = ""
 
     # Get the text of it's child
-    temp = query_plan_parser.parser.parse_plan(plan["Plans"][0], start)
+    temp = query_plan_parser.annotation.parse_plan(plan["Plans"][0], start)
     result += temp + " "
-    temp = query_plan_parser.parser.parse_plan(plan["Plans"][1])
+    temp = query_plan_parser.annotation.parse_plan(plan["Plans"][1])
     result += temp + " "
 
 

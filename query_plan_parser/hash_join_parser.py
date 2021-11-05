@@ -3,14 +3,14 @@ Hash Join parser
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def hash_join_parser(plan, start=False):
     """ Hash join parser """
     result = ""
 
-    result += query_plan_parser.parser.parse_plan(plan["Plans"][1], start) + " "
-    result += query_plan_parser.parser.parse_plan(plan["Plans"][0]) + " "
+    result += query_plan_parser.annotation.parse_plan(plan["Plans"][1], start) + " "
+    result += query_plan_parser.annotation.parse_plan(plan["Plans"][0]) + " "
 
     result += "The result from previous operation is joined using Hash "
     result += plan["Join Type"] + " Join"

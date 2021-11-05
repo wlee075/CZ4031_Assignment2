@@ -4,11 +4,11 @@ https://www.depesz.com/2013/05/19/explaining-the-unexplainable-part-4/
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def cte_scan_parser(plan, start=False):
     """ CTE Scan parser """
-    result = query_plan_parser.parser.get_conjuction(start)
+    result = query_plan_parser.annotation.get_conjuction(start)
 
     # Parse the values scan
     if plan["Node Type"] == "CTE Scan":

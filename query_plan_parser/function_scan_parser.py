@@ -4,11 +4,11 @@ https://www.depesz.com/2013/05/09/explaining-the-unexplainable-part-3/
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def function_scan_parser(plan, start=False):
     """ Parser for Function Scan node type """
-    parsed_plan = query_plan_parser.parser.get_conjuction(start)
+    parsed_plan = query_plan_parser.annotation.get_conjuction(start)
     parsed_plan += "it runs the function " + plan["Function Name"]
     parsed_plan += " and returns the recordset created by it."
     return parsed_plan

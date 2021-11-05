@@ -4,12 +4,12 @@ https://www.depesz.com/2013/05/09/explaining-the-unexplainable-part-3/
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def group_parser(plan, start=False):
     """Parser function for node type limit"""
-    parsed_plan = query_plan_parser.parser.parse_plan(plan["Plans"][0], start)
-    parsed_plan += " " + query_plan_parser.parser.get_conjuction()
+    parsed_plan = query_plan_parser.annotation.parse_plan(plan["Plans"][0], start)
+    parsed_plan += " " + query_plan_parser.annotation.get_conjuction()
     if len(plan["Group Key"]) == 1:
         parsed_plan += "the result from the previous operation is grouped together using the key "
         parsed_plan += plan["Group Key"][0].replace("::text", "") + "."

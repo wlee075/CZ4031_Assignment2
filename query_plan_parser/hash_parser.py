@@ -4,16 +4,16 @@ https://www.depesz.com/2013/05/09/explaining-the-unexplainable-part-3/
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def hash_parser(plan, start=False):
     """Parser for Hash node type"""
 
     if "Plans" in plan:
-        sentence = query_plan_parser.parser.parse_plan(plan['Plans'][0], start)
+        sentence = query_plan_parser.annotation.parse_plan(plan['Plans'][0], start)
         sentence += " The hash function makes a memory hash with rows from the source."
     else:
-        sentence = query_plan_parser.parser.get_conjuction(start)
+        sentence = query_plan_parser.annotation.get_conjuction(start)
         sentence += "the hash function makes a memory hash with rows from the source."
 
     return sentence

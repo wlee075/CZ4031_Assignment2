@@ -4,7 +4,7 @@ http://www.postgresql-archive.org/Query-plan-for-Merge-Semi-Join-td5990041.html
 """
 
 import json
-import query_plan_parser.parser
+import query_plan_parser.annotation
 
 def merge_join_parser(plan, start=False):
     """ Merge Join parser """
@@ -12,11 +12,11 @@ def merge_join_parser(plan, start=False):
 
     if 'Plans' in plan:
         for child in plan['Plans']:
-            result += query_plan_parser.parser.parse_plan(child, start) + " "
+            result += query_plan_parser.annotation.parse_plan(child, start) + " "
             if start:
                 start = False
 
-    result += query_plan_parser.parser.get_conjuction(start)
+    result += query_plan_parser.annotation.get_conjuction(start)
     result += 'the result from previous operation is joined using Merge Join'
 
     if 'Merge Cond' in plan:
