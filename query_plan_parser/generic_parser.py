@@ -11,7 +11,7 @@ def generic_parser(plan, start=False):
     parsed_plan += "do " + plan["Node Type"] + "."
     if "Plans" in plan:
         for child in plan["Plans"]:
-            parsed_plan += " " + query_plan_parser.parser.parse_plan(child)
+            parsed_plan += " " + query_plan_parser.annotation.parse_plan(child)
     return parsed_plan
 
 
