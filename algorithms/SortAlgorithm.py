@@ -3,7 +3,7 @@ Parser for sort node type
 """
 
 import json
-import algorithms.Annotation
+import Annotation
 
 def SortAlgorithm(plan, start=False):
     """ Sort Parser """
@@ -12,14 +12,14 @@ def SortAlgorithm(plan, start=False):
     # Get the text of it's child before if exists
     if "Plans" in plan:
         for child in plan["Plans"]:
-            temp = algorithms.Annotation.parse_plan(child, start)
+            temp = Annotation.parse_plan(child, start)
             result += temp + " "
             if start:
                 start = False
 
     # Parse the Sort
     if plan["Node Type"] == "Sort":
-        result += algorithms.Annotation.get_conjuction(start)
+        result += Annotation.get_conjuction(start)
         result += "the result is sorted by using attribute "
         if "DESC" in plan["Sort Key"]:
             result += str(plan["Sort Key"].replace('DESC', '')) +" in descending order."

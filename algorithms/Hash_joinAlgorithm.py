@@ -3,14 +3,14 @@ File for Hash Join
 """
 
 import json
-import algorithms.Annotation
+import Annotation
 
 def Hash_joinAlgorithm(plan, start=False):
     """ Hash join parser """
     result = ""
 
-    result += algorithms.Annotation.parse_plan(plan["Plans"][1], start) + " "
-    result += algorithms.Annotation.parse_plan(plan["Plans"][0]) + " "
+    result += Annotation.parse_plan(plan["Plans"][1], start) + " "
+    result += Annotation.parse_plan(plan["Plans"][0]) + " "
 
     result += "The result from previous operation is joined using Hash "
     result += plan["Join Type"] + " Join"

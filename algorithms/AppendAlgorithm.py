@@ -3,7 +3,7 @@ Parser for append node type
 """
 
 import json
-import algorithms.Annotation
+import Annotation
 
 def AppendAlgorithm(plan, start=False):
     """ Append Parser """
@@ -12,14 +12,14 @@ def AppendAlgorithm(plan, start=False):
     # Get the text of it's child before if exists
     if "Plans" in plan:
         for child in plan["Plans"]:
-            temp = algorithms.Annotation.parse_plan(child, start)
+            temp = Annotation.parse_plan(child, start)
             if start:
                 start = False
             result += temp + " "
 
     #Parse the values scan
     if plan["Node Type"] == "Append":
-        result += algorithms.Annotation.get_conjuction(start)
+        result += Annotation.get_conjuction(start)
         result += "all of the scan results is combined into one."
 
     return result

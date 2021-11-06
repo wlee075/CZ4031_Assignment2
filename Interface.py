@@ -6,7 +6,7 @@ import json
 import logging
 import psycopg2
 
-from algorithms.Annotation import parse_plan
+from Annotation import parse_plan
 try:
     # python 2.x
     from Tkinter import *

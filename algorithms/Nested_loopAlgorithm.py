@@ -3,16 +3,16 @@ Parser for nested loop node type
 """
 
 import json
-import algorithms.Annotation
+import Annotation
 
 def Nested_loopAlgorithm(plan, start=False):
     """ Nested Loop Parser """
     result = ""
 
     # Get the text of it's child
-    temp = algorithms.Annotation.parse_plan(plan["Plans"][0], start)
+    temp = Annotation.parse_plan(plan["Plans"][0], start)
     result += temp + " "
-    temp = algorithms.Annotation.parse_plan(plan["Plans"][1])
+    temp = Annotation.parse_plan(plan["Plans"][1])
     result += temp + " "
 
 

@@ -3,11 +3,11 @@ File to parse node type seq scan
 """
 
 import json
-import algorithms.Annotation
+import Annotation
 
 def Seq_scanAlgorithm(plan, start=False):
     """ Parser for the Seq Scan Node Type"""
-    sentence = algorithms.Annotation.get_conjuction(start)
+    sentence = Annotation.get_conjuction(start)
     sentence += "it does a sequential scan on relation "
     if "Relation Name" in plan:
         sentence += plan['Relation Name']

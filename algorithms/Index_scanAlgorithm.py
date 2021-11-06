@@ -3,11 +3,11 @@ Parser for index scan node type
 """
 
 import json
-import algorithms.Annotation
+import Annotation
 
 def Index_scanAlgorithm(plan, start=False):
     """ Index Scan parser """
-    result = algorithms.Annotation.get_conjuction(start)
+    result = Annotation.get_conjuction(start)
 
     #Parse the index scan or index only scan
     if plan["Node Type"] == "Index Scan":

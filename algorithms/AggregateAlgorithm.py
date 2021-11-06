@@ -3,15 +3,15 @@ Parser for GroupAggregate node type
 """
 
 import json
-import algorithms.Annotation
+import Annotation
 
 def AggregateAlgorithm(plan, start=False):
     """ Parser for Aggregate node type """
 
     if plan["Strategy"] == "Sorted":
-        parsed_plan = algorithms.Annotation.parse_plan(plan["Plans"][0], start)
+        parsed_plan = Annotation.parse_plan(plan["Plans"][0], start)
 
-        parsed_plan += " " + algorithms.Annotation.get_conjuction()
+        parsed_plan += " " + Annotation.get_conjuction()
 
         if "Group Key" in plan:
             parsed_plan += "the result is grouped by "
@@ -24,7 +24,7 @@ def AggregateAlgorithm(plan, start=False):
         return parsed_plan
 
     if plan["Strategy"] == "Hashed":
-        sentence = algorithms.Annotation.get_conjuction()
+        sentence = Annotation.get_conjuction()
 
         if len(plan["Group Key"]) == 1:
             sentence += "it hashes all the rows based on the key "
@@ -35,13 +35,13 @@ def AggregateAlgorithm(plan, start=False):
                 sentence += i.replace("::text", "") + ", "
         sentence += "then returns the desired row after processing."
 
-        parsed_plan = algorithms.Annotation.parse_plan(plan["Plans"][0], start)
+        parsed_plan = Annotation.parse_plan(plan["Plans"][0], start)
         parsed_plan += " " + sentence
         return parsed_plan
 
     if plan["Strategy"] == "Plain":
-        parsed_plan = algorithms.Annotation.parse_plan(plan["Plans"][0], start) + " "
-        parsed_plan += algorithms.Annotation.get_conjuction()
+        parsed_plan = Annotation.parse_plan(plan["Plans"][0], start) + " "
+        parsed_plan += Annotation.get_conjuction()
         parsed_plan += "the result will be aggregated."
         return parsed_plan
 
