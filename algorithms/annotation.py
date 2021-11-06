@@ -4,52 +4,52 @@ Main file to parse query plan
 
 import random
 
-import algorithms.generic_parser as generic
-import algorithms.hash_join_parser as hash_join
-import algorithms.sort_parser as sort
-import algorithms.aggregate_parser as aggregate
-import algorithms.seq_scan_parser as seq_scan
-import algorithms.hash_parser as hash_parser
-import algorithms.merge_join_parser as merge_join
-import algorithms.limit_parser as limit
-import algorithms.unique_parser as unique
-import algorithms.function_scan_parser as function_scan
-import algorithms.index_scan_parser as index_scan
-import algorithms.values_scan_parser as values_scan
-import algorithms.nested_loop_parser as nested_loop
-import algorithms.cte_scan_parser as cte_scan
-import algorithms.append_parser as append
-import algorithms.materialize_parser as materialize
-import algorithms.subquery_scan_parser as subquery_scan
-import algorithms.setop_parser as setop
-import algorithms.group_parser as group
+import algorithms.GenericAlgorithm as generic
+import algorithms.Hash_joinAlgorithm as hash_join
+import algorithms.SortAlgorithm as sort
+import algorithms.AggregateAlgorithm as aggregate
+import algorithms.Seq_scanAlgorithm as seq_scan
+import algorithms.HashAlgorithm as hashAlgorithm
+import algorithms.Merge_joinAlgorithm as merge_join
+import algorithms.LimitAlgorithm as limit
+import algorithms.UniqueAlgorithm as unique
+import algorithms.Function_scanAlgorithm as function_scan
+import algorithms.Index_scanAlgorithm as index_scan
+import algorithms.Values_scanAlgorithm as values_scan
+import algorithms.Nested_loopAlgorithm as nested_loop
+import algorithms.Cte_scanAlgorithm as cte_scan
+import algorithms.AppendAlgorithm as append
+import algorithms.MaterializeAlgorithm as materialize
+import algorithms.Subquery_scanAlgorithm as subquery_scan
+import algorithms.SetopAlgorithm as setop
+import algorithms.GroupAlgorithm as group
 
 class ParserSelector:
     """ ParserSelectorClass """
     def __init__(self):
         """ Init Class """
         
-        self.generic_parser = generic.generic_parser
+        self.GenericAlgorithm = generic.GenericAlgorithm
 
-        self.Hash_Join = hash_join.hash_join_parser
-        self.Sort = sort.sort_parser
-        self.Aggregate = aggregate.aggregate_parser
-        self.Seq_Scan = seq_scan.seq_scan_parser
-        self.Hash = hash_parser.hash_parser
-        self.Merge_Join = merge_join.merge_join_parser
-        self.Limit = limit.limit_parser
-        self.Unique = unique.unique_parser
-        self.Function_Scan = function_scan.function_scan_parser
-        self.Index_Scan = index_scan.index_scan_parser
-        self.Index_Only_Scan = index_scan.index_scan_parser
-        self.Values_Scan = values_scan.values_scan_parser
-        self.Nested_Loop = nested_loop.nested_loop_parser
-        self.CTE_Scan = cte_scan.cte_scan_parser
-        self.Append = append.append_parser
-        self.Materialize = materialize.materialize_parser
-        self.Subquery_Scan = subquery_scan.subquery_scan_parser
-        self.SetOp = setop.setop_parser
-        self.Group = group.group_parser
+        self.Hash_Join = hash_join.Hash_joinAlgorithm
+        self.Sort = sort.SortAlgorithm
+        self.Aggregate = aggregate.AggregateAlgorithm
+        self.Seq_Scan = seq_scan.Seq_scanAlgorithm
+        self.Hash = hashAlgorithm.HashAlgorithm
+        self.Merge_Join = merge_join.Merge_joinAlgorithm
+        self.Limit = limit.LimitAlgorithm
+        self.Unique = unique.UniqueAlgorithm
+        self.Function_Scan = function_scan.Function_scanAlgorithm
+        self.Index_Scan = index_scan.Index_scanAlgorithm
+        self.Index_Only_Scan = index_scan.Index_scanAlgorithm
+        self.Values_Scan = values_scan.Values_scanAlgorithm
+        self.Nested_Loop = nested_loop.Nested_loopAlgorithm
+        self.CTE_Scan = cte_scan.Cte_scanAlgorithm
+        self.Append = append.AppendAlgorithm
+        self.Materialize = materialize.MaterializeAlgorithm
+        self.Subquery_Scan = subquery_scan.Subquery_scanAlgorithm
+        self.SetOp = setop.SetopAlgorithm
+        self.Group = group.GroupAlgorithm
 
 def parse_plan(plan, start=False):
 
@@ -59,7 +59,7 @@ def parse_plan(plan, start=False):
     try:
         parser = getattr(selector, plan["Node Type"].replace(" ", "_"))
     except:
-        parser = selector.generic_parser
+        parser = selector.GenericAlgorithm
     parsed_plan = init_plan(plan, start)
     parsed_plan += parser(plan, start)
     return parsed_plan

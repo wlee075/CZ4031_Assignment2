@@ -3,23 +3,23 @@ Parser for materialize node type
 """
 
 import json
-import algorithms.annotation
+import algorithms.Annotation
 
-def materialize_parser(plan, start=False):
+def MaterializeAlgorithm(plan, start=False):
     """ Materialize parser """
     result = ""
 
     # Get the text of it's child before if exists
     if "Plans" in plan:
         for child in plan["Plans"]:
-            temp = algorithms.annotation.parse_plan(child, start)
+            temp = algorithms.Annotation.parse_plan(child, start)
             result += temp + " "
             if start:
                 start = False
 
     #Parse the materialize
     if plan["Node Type"] == "Materialize":
-        result += algorithms.annotation.get_conjuction(start)
+        result += algorithms.Annotation.get_conjuction(start)
         result += "the results will be stored in the memory for more efficient access. "
 
     return result
@@ -53,4 +53,4 @@ if __name__ == "__main__":
     }
     '''
     JSON_PLAN = json.loads(PLAN)
-    print(materialize_parser(JSON_PLAN, start=True))
+    print(materializeAlgorithm(JSON_PLAN, start=True))

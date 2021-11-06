@@ -6,7 +6,7 @@ import json
 import logging
 import psycopg2
 
-from algorithms.annotation import parse_plan
+from algorithms.Annotation import parse_plan
 
 class Explain:
     """ Class to explain query """

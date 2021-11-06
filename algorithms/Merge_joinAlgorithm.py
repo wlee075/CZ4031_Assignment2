@@ -3,19 +3,19 @@ Merge Join parser
 """
 
 import json
-import algorithms.annotation
+import algorithms.Annotation
 
-def merge_join_parser(plan, start=False):
+def Merge_joinAlgorithm(plan, start=False):
     """ Merge Join parser """
     result = ''
 
     if 'Plans' in plan:
         for child in plan['Plans']:
-            result += algorithms.annotation.parse_plan(child, start) + " "
+            result += algorithms.Annotation.parse_plan(child, start) + " "
             if start:
                 start = False
 
-    result += algorithms.annotation.get_conjuction(start)
+    result += algorithms.Annotation.get_conjuction(start)
     result += 'the result from previous operation is then joined using Merge Join'
 
     if 'Merge Cond' in plan:
@@ -49,4 +49,4 @@ if __name__ == "__main__":
     }
     '''
     JSON_PLAN = json.loads(PLAN)
-    print(merge_join_parser(JSON_PLAN, start=True))
+    print(merge_joinAlgorithm(JSON_PLAN, start=True))

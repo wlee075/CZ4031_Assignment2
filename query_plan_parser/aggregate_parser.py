@@ -3,15 +3,15 @@ Parser for GroupAggregate node type
 """
 
 import json
-import algorithms.annotation
+import algorithms.Annotation
 
-def aggregate_parser(plan, start=False):
+def AggregateAlgorithm(plan, start=False):
     """ Parser for Aggregate node type """
 
     if plan["Strategy"] == "Sorted":
-        parsed_plan = algorithms.annotation.parse_plan(plan["Plans"][0], start)
+        parsed_plan = algorithms.Annotation.parse_plan(plan["Plans"][0], start)
 
-        parsed_plan += " " + algorithms.annotation.get_conjuction()
+        parsed_plan += " " + algorithms.Annotation.get_conjuction()
 
         if "Group Key" in plan:
             parsed_plan += "the result is grouped by "
@@ -24,7 +24,7 @@ def aggregate_parser(plan, start=False):
         return parsed_plan
 
     if plan["Strategy"] == "Hashed":
-        sentence = algorithms.annotation.get_conjuction()
+        sentence = algorithms.Annotation.get_conjuction()
 
         if len(plan["Group Key"]) == 1:
             sentence += "it hashes all the rows based on the key "
@@ -35,13 +35,13 @@ def aggregate_parser(plan, start=False):
                 sentence += i.replace("::text", "") + ", "
         sentence += "then returns the desired row after processing."
 
-        parsed_plan = algorithms.annotation.parse_plan(plan["Plans"][0], start)
+        parsed_plan = algorithms.Annotation.parse_plan(plan["Plans"][0], start)
         parsed_plan += " " + sentence
         return parsed_plan
 
     if plan["Strategy"] == "Plain":
-        parsed_plan = algorithms.annotation.parse_plan(plan["Plans"][0], start) + " "
-        parsed_plan += algorithms.annotation.get_conjuction()
+        parsed_plan = algorithms.Annotation.parse_plan(plan["Plans"][0], start) + " "
+        parsed_plan += algorithms.Annotation.get_conjuction()
         parsed_plan += "the result will be aggregated."
         return parsed_plan
 
@@ -77,7 +77,7 @@ if __name__ == "__main__":
     }
     '''
     JSON_PLAN = json.loads(PLAN)
-    print(aggregate_parser(JSON_PLAN, start=True))
+    print(AggregateAlgorithm(JSON_PLAN, start=True))
 
     PLAN2 = '''
     {                                                   
@@ -105,4 +105,4 @@ if __name__ == "__main__":
     }
     '''
     JSON_PLAN2 = json.loads(PLAN2)
-    print(aggregate_parser(JSON_PLAN2))
+    print(AggregateAlgorithm(JSON_PLAN2))

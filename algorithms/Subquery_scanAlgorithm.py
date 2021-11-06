@@ -3,19 +3,19 @@ Subquery scan parser
 """
 
 import json
-import algorithms.annotation
+import algorithms.Annotation
 
-def subquery_scan_parser(plan, start=False):
+def Subquery_scanAlgorithm(plan, start=False):
     """ Subquery scan parser """
     result = ''
 
     if 'Plans' in plan:
         for child in plan['Plans']:
-            result += algorithms.annotation.parse_plan(child, start) + " "
+            result += algorithms.Annotation.parse_plan(child, start) + " "
             if start:
                 start = False
 
-    result += algorithms.annotation.get_conjuction(start)
+    result += algorithms.Annotation.get_conjuction(start)
     result += 'Subquery Scan is performed on the result from '
     result += 'the previous operations and output the result without any changes '
     result += '(the purpose of Subquery scan is mainly for internal bookkeeping).'
@@ -42,4 +42,4 @@ if __name__ == "__main__":
     }
     '''
     JSON_PLAN = json.loads(PLAN)
-    print(subquery_scan_parser(JSON_PLAN, start=True))
+    print(subquery_scanAlgorithm(JSON_PLAN, start=True))

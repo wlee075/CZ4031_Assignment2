@@ -3,15 +3,15 @@ Generic Parser
 """
 
 import json
-import algorithms.annotation
+import algorithms.Annotation
 
-def generic_parser(plan, start=False):
+def GenericAlgorithm(plan, start=False):
     """ Parse unknown node_type """
-    parsed_plan = algorithms.annotation.get_conjuction(start)
+    parsed_plan = algorithms.Annotation.get_conjuction(start)
     parsed_plan += "do " + plan["Node Type"] + "."
     if "Plans" in plan:
         for child in plan["Plans"]:
-            parsed_plan += " " + algorithms.annotation.parse_plan(child)
+            parsed_plan += " " + algorithms.Annotation.parse_plan(child)
     return parsed_plan
 
 
@@ -43,4 +43,4 @@ if __name__ == "__main__":
     }
     '''
     JSON_PLAN = json.loads(PLAN)
-    print(generic_parser(JSON_PLAN, start=True))
+    print(genericAlgorithm(JSON_PLAN, start=True))

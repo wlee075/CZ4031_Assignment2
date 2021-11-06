@@ -3,11 +3,11 @@ Parser for index scan node type
 """
 
 import json
-import algorithms.annotation
+import algorithms.Annotation
 
-def index_scan_parser(plan, start=False):
+def Index_scanAlgorithm(plan, start=False):
     """ Index Scan parser """
-    result = algorithms.annotation.get_conjuction(start)
+    result = algorithms.Annotation.get_conjuction(start)
 
     #Parse the index scan or index only scan
     if plan["Node Type"] == "Index Scan":
@@ -48,7 +48,7 @@ if __name__ == "__main__":
     }
     '''
     JSON_PLAN = json.loads(PLAN)
-    print(index_scan_parser(JSON_PLAN, start=True))
+    print(index_scanAlgorithm(JSON_PLAN, start=True))
 
     PLAN2 = '''
     {                                             
@@ -66,4 +66,4 @@ if __name__ == "__main__":
     }
     '''
     JSON_PLAN2 = json.loads(PLAN2)
-    print(index_scan_parser(JSON_PLAN2, start=True))
+    print(index_scanAlgorithm(JSON_PLAN2, start=True))

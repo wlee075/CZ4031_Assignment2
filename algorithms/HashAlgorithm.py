@@ -3,16 +3,16 @@ File to parse node type hash
 """
 
 import json
-import algorithms.annotation
+import algorithms.Annotation
 
-def hash_parser(plan, start=False):
+def HashAlgorithm(plan, start=False):
     """Parser for Hash node type"""
 
     if "Plans" in plan:
-        sentence = algorithms.annotation.parse_plan(plan['Plans'][0], start)
+        sentence = algorithms.Annotation.parse_plan(plan['Plans'][0], start)
         sentence += " The hash function makes a memory hash with rows from the source."
     else:
-        sentence = algorithms.annotation.get_conjuction(start)
+        sentence = algorithms.Annotation.get_conjuction(start)
         sentence += "the hash function makes a memory hash with rows from the source."
 
     return sentence
@@ -44,4 +44,4 @@ if __name__ == "__main__":
     }
     '''
     JSON_PLAN = json.loads(PLAN)
-    print(hash_parser(JSON_PLAN, start=True))
+    print(hashAlgorithm(JSON_PLAN, start=True))

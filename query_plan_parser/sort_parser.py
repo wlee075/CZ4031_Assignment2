@@ -3,23 +3,23 @@ Parser for sort node type
 """
 
 import json
-import algorithms.annotation
+import algorithms.Annotation
 
-def sort_parser(plan, start=False):
+def sortAlgorithm(plan, start=False):
     """ Sort Parser """
     result = ""
 
     # Get the text of it's child before if exists
     if "Plans" in plan:
         for child in plan["Plans"]:
-            temp = algorithms.annotation.parse_plan(child, start)
+            temp = algorithms.Annotation.parse_plan(child, start)
             result += temp + " "
             if start:
                 start = False
 
     # Parse the Sort
     if plan["Node Type"] == "Sort":
-        result += algorithms.annotation.get_conjuction(start)
+        result += algorithms.Annotation.get_conjuction(start)
         result += "the result is sorted by using attribute "
         if "DESC" in plan["Sort Key"]:
             result += str(plan["Sort Key"].replace('DESC', '')) +" in descending order."
@@ -58,4 +58,4 @@ if __name__ == "__main__":
     }
     '''
     JSON_PLAN = json.loads(PLAN)
-    print(sort_parser(JSON_PLAN, start=True))
+    print(sortAlgorithm(JSON_PLAN, start=True))

@@ -3,11 +3,11 @@ File to parse node type function scan
 """
 
 import json
-import algorithms.annotation
+import algorithms.Annotation
 
-def function_scan_parser(plan, start=False):
+def Function_scanAlgorithm(plan, start=False):
     """ Parser for Function Scan node type """
-    parsed_plan = algorithms.annotation.get_conjuction(start)
+    parsed_plan = algorithms.Annotation.get_conjuction(start)
     parsed_plan += "it runs the function " + plan["Function Name"]
     parsed_plan += " and returns the recordset created."
     return parsed_plan
@@ -28,4 +28,4 @@ if __name__ == "__main__":
     }                                                                         
     '''
     JSON_PLAN = json.loads(PLAN)
-    print(function_scan_parser(JSON_PLAN, start=True))
+    print(function_scanAlgorithm(JSON_PLAN, start=True))

@@ -3,11 +3,11 @@ Parser for values scan node type
 """
 
 import json
-import algorithms.annotation
+import algorithms.Annotation
 
-def values_scan_parser(plan, start=False):
+def Values_scanAlgorithm(plan, start=False):
     """ Value Scan Parser """
-    result = algorithms.annotation.get_conjuction(start)
+    result = algorithms.Annotation.get_conjuction(start)
     result += "it does a scan through the given values from the query."
 
     return result
@@ -25,5 +25,5 @@ if __name__ == "__main__":
     }
     '''
     JSON_PLAN = json.loads(PLAN)
-    print(values_scan_parser(JSON_PLAN, start=True))
+    print(values_scanAlgorithm(JSON_PLAN, start=True))
     

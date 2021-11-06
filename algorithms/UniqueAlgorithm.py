@@ -3,12 +3,12 @@ File to parse node type unique
 """
 
 import json
-import algorithms.annotation
+import algorithms.Annotation
 
-def unique_parser(plan, start=False):
+def UniqueAlgorithm(plan, start=False):
     """Parser function for node type unique"""
-    parsed_plan = algorithms.annotation.parse_plan(plan["Plans"][0], start) + " "
-    parsed_plan += algorithms.annotation.get_conjuction()
+    parsed_plan = algorithms.Annotation.parse_plan(plan["Plans"][0], start) + " "
+    parsed_plan += algorithms.Annotation.get_conjuction()
     parsed_plan += "on the sorted data, it scans each row and "
     parsed_plan += "discards the rows with the same value as the previous row."
     return parsed_plan
@@ -37,5 +37,5 @@ if __name__ == "__main__":
     }
     '''
     JSON_PLAN = json.loads(PLAN)
-    print(unique_parser(JSON_PLAN, start=True))
+    print(uniqueAlgorithm(JSON_PLAN, start=True))
     

@@ -3,14 +3,14 @@ File for Hash Join
 """
 
 import json
-import algorithms.annotation
+import algorithms.Annotation
 
-def hash_join_parser(plan, start=False):
+def Hash_joinAlgorithm(plan, start=False):
     """ Hash join parser """
     result = ""
 
-    result += algorithms.annotation.parse_plan(plan["Plans"][1], start) + " "
-    result += algorithms.annotation.parse_plan(plan["Plans"][0]) + " "
+    result += algorithms.Annotation.parse_plan(plan["Plans"][1], start) + " "
+    result += algorithms.Annotation.parse_plan(plan["Plans"][0]) + " "
 
     result += "The result from previous operation is joined using Hash "
     result += plan["Join Type"] + " Join"
@@ -59,7 +59,7 @@ if __name__ == "__main__":
     }
     '''
     JSON_PLAN = json.loads(PLAN)
-    print(hash_join_parser(JSON_PLAN, start=True))
+    print(hash_joinAlgorithm(JSON_PLAN, start=True))
 
     JSON_PLAN["Join Type"] = "Inner"
-    print(hash_join_parser(JSON_PLAN, start=True))
+    print(hash_joinAlgorithm(JSON_PLAN, start=True))

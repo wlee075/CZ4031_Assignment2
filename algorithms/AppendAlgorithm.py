@@ -3,23 +3,23 @@ Parser for append node type
 """
 
 import json
-import algorithms.annotation
+import algorithms.Annotation
 
-def append_parser(plan, start=False):
+def AppendAlgorithm(plan, start=False):
     """ Append Parser """
     result = ""
 
     # Get the text of it's child before if exists
     if "Plans" in plan:
         for child in plan["Plans"]:
-            temp = algorithms.annotation.parse_plan(child, start)
+            temp = algorithms.Annotation.parse_plan(child, start)
             if start:
                 start = False
             result += temp + " "
 
     #Parse the values scan
     if plan["Node Type"] == "Append":
-        result += algorithms.annotation.get_conjuction(start)
+        result += algorithms.Annotation.get_conjuction(start)
         result += "all of the scan results is combined into one."
 
     return result
@@ -61,4 +61,4 @@ if __name__ == "__main__":
     }
     '''
     JSON_PLAN = json.loads(PLAN)
-    print(append_parser(JSON_PLAN, start=True))
+    print(appendAlgorithm(JSON_PLAN, start=True))
