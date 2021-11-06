@@ -1,10 +1,7 @@
 """
-Query Plan App (Windows Compatible)
+Application for query interface (Windows Compatible)
 """
-
 import json
-import logging
-from datetime import datetime
 
 try:
     # python 2.x
@@ -15,7 +12,7 @@ except ImportError:
 
 from query_executor.explain_query import Explain
 
-class QueryPlanApp(Tk):
+class InterfaceApp(Tk):
     """ App class for Query Plan """
     def __init__(self, parent, host, port, dbname, user, password):
         self.explanator = Explain(
@@ -133,39 +130,3 @@ class QueryPlanApp(Tk):
         parsed_plan = self.explanator.parse(query_plan)
         self.entry_parsed_plan.delete("1.0", END)
         self.entry_parsed_plan.insert("1.0", json.dumps(parsed_plan, indent=4))
-
-def init_logger(log_file):
-    """ Initialize logger """
-    logging.basicConfig(
-        filename=log_file,
-        filemode='w',
-        level=logging.DEBUG,
-        format='%(asctime)s [%(levelname)s][%(message)s]'
-    )
-
-def main():
-    """ Main function to explain query """
-    config_path = "config.json"
-    with open(config_path, "r") as conf_file:
-        conf = json.load(conf_file)
-
-    log_path = conf["log"]["log_path"] + datetime.now().strftime("parser_%Y_%m_%d_%H_%M.log")
-    init_logger(log_path)
-    logging.info("Start logging")
-
-    db_conf = conf["db"]
-    app = QueryPlanApp(
-        None,
-        host=db_conf["host"],
-        port=db_conf["port"],
-        dbname=db_conf["database"],
-        user=db_conf["username"],
-        password=db_conf["password"]
-    )
-    app.title('Postgres Query Explainator')
-    app.mainloop()
-
-    logging.info("Finished logging")
-
-if __name__ == "__main__":
-    main()

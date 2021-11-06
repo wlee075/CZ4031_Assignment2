@@ -2,7 +2,6 @@
 Start script to explain query
 - Explain query in normal format
 - Explain query in english format
-- Explain query in voice
 """
 
 import json
@@ -41,7 +40,6 @@ def main(argv):
             user=db_conf["username"],
             password=db_conf["password"],
             desc=cli_conf["desc_plan"],
-            voice=cli_conf["voice_plan"],
             debug=cli_conf["debug_plan"]
         )
         if len(argv) > 1:
@@ -54,8 +52,6 @@ def main(argv):
                 print("Original plan: " + json.dumps(query_plan, indent=4))
             if cli_conf["desc_plan"]:
                 print("Parsed result: " + parsed_plan)
-            if cli_conf["voice_plan"]:
-                explanator.vocalizator.voice(parsed_plan)
         else:
             explanator.loop_explain()
     except Exception as exception:
