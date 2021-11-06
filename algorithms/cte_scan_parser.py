@@ -3,11 +3,11 @@ Parser for CTE scan node type
 """
 
 import json
-import query_plan_parser.annotation
+import algorithms.annotation
 
 def cte_scan_parser(plan, start=False):
     """ CTE Scan parser """
-    result = query_plan_parser.annotation.get_conjuction(start)
+    result = algorithms.annotation.get_conjuction(start)
 
     # Parse the values scan
     if plan["Node Type"] == "CTE Scan":

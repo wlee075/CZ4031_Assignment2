@@ -3,7 +3,7 @@ Parser for materialize node type
 """
 
 import json
-import query_plan_parser.annotation
+import algorithms.annotation
 
 def materialize_parser(plan, start=False):
     """ Materialize parser """
@@ -12,14 +12,14 @@ def materialize_parser(plan, start=False):
     # Get the text of it's child before if exists
     if "Plans" in plan:
         for child in plan["Plans"]:
-            temp = query_plan_parser.annotation.parse_plan(child, start)
+            temp = algorithms.annotation.parse_plan(child, start)
             result += temp + " "
             if start:
                 start = False
 
     #Parse the materialize
     if plan["Node Type"] == "Materialize":
-        result += query_plan_parser.annotation.get_conjuction(start)
+        result += algorithms.annotation.get_conjuction(start)
         result += "the results will be stored in the memory for more efficient access. "
 
     return result

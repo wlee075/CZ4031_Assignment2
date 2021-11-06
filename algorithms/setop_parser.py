@@ -3,12 +3,12 @@ Parser for SetOp node type
 """
 
 import json
-import query_plan_parser.annotation
+import algorithms.annotation
 
 def setop_parser(plan, start=False):
     """ SetOp Parser """
-    result = query_plan_parser.annotation.parse_plan(plan["Plans"][0], start)
-    result += " " + query_plan_parser.annotation.get_conjuction()
+    result = algorithms.annotation.parse_plan(plan["Plans"][0], start)
+    result += " " + algorithms.annotation.get_conjuction()
     result += "it finds the "
     cmd_name = str(plan["Command"])
     if cmd_name == "Except" or cmd_name == "Except All":

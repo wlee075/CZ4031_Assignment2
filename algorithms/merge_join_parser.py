@@ -3,7 +3,7 @@ Merge Join parser
 """
 
 import json
-import query_plan_parser.annotation
+import algorithms.annotation
 
 def merge_join_parser(plan, start=False):
     """ Merge Join parser """
@@ -11,11 +11,11 @@ def merge_join_parser(plan, start=False):
 
     if 'Plans' in plan:
         for child in plan['Plans']:
-            result += query_plan_parser.annotation.parse_plan(child, start) + " "
+            result += algorithms.annotation.parse_plan(child, start) + " "
             if start:
                 start = False
 
-    result += query_plan_parser.annotation.get_conjuction(start)
+    result += algorithms.annotation.get_conjuction(start)
     result += 'the result from previous operation is then joined using Merge Join'
 
     if 'Merge Cond' in plan:

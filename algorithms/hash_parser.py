@@ -3,16 +3,16 @@ File to parse node type hash
 """
 
 import json
-import query_plan_parser.annotation
+import algorithms.annotation
 
 def hash_parser(plan, start=False):
     """Parser for Hash node type"""
 
     if "Plans" in plan:
-        sentence = query_plan_parser.annotation.parse_plan(plan['Plans'][0], start)
+        sentence = algorithms.annotation.parse_plan(plan['Plans'][0], start)
         sentence += " The hash function makes a memory hash with rows from the source."
     else:
-        sentence = query_plan_parser.annotation.get_conjuction(start)
+        sentence = algorithms.annotation.get_conjuction(start)
         sentence += "the hash function makes a memory hash with rows from the source."
 
     return sentence

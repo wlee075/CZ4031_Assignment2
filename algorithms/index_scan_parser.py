@@ -3,11 +3,11 @@ Parser for index scan node type
 """
 
 import json
-import query_plan_parser.annotation
+import algorithms.annotation
 
 def index_scan_parser(plan, start=False):
     """ Index Scan parser """
-    result = query_plan_parser.annotation.get_conjuction(start)
+    result = algorithms.annotation.get_conjuction(start)
 
     #Parse the index scan or index only scan
     if plan["Node Type"] == "Index Scan":

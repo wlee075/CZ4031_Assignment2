@@ -3,12 +3,12 @@ File to parse node type unique
 """
 
 import json
-import query_plan_parser.annotation
+import algorithms.annotation
 
 def unique_parser(plan, start=False):
     """Parser function for node type unique"""
-    parsed_plan = query_plan_parser.annotation.parse_plan(plan["Plans"][0], start) + " "
-    parsed_plan += query_plan_parser.annotation.get_conjuction()
+    parsed_plan = algorithms.annotation.parse_plan(plan["Plans"][0], start) + " "
+    parsed_plan += algorithms.annotation.get_conjuction()
     parsed_plan += "on the sorted data, it scans each row and "
     parsed_plan += "discards the rows with the same value as the previous row."
     return parsed_plan

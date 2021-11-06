@@ -3,7 +3,7 @@ Parser for append node type
 """
 
 import json
-import query_plan_parser.annotation
+import algorithms.annotation
 
 def append_parser(plan, start=False):
     """ Append Parser """
@@ -12,14 +12,14 @@ def append_parser(plan, start=False):
     # Get the text of it's child before if exists
     if "Plans" in plan:
         for child in plan["Plans"]:
-            temp = query_plan_parser.annotation.parse_plan(child, start)
+            temp = algorithms.annotation.parse_plan(child, start)
             if start:
                 start = False
             result += temp + " "
 
     #Parse the values scan
     if plan["Node Type"] == "Append":
-        result += query_plan_parser.annotation.get_conjuction(start)
+        result += algorithms.annotation.get_conjuction(start)
         result += "all of the scan results is combined into one."
 
     return result

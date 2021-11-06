@@ -3,12 +3,12 @@ File to parse node type group
 """
 
 import json
-import query_plan_parser.annotation
+import algorithms.annotation
 
 def group_parser(plan, start=False):
     """Parser function for node type limit"""
-    parsed_plan = query_plan_parser.annotation.parse_plan(plan["Plans"][0], start)
-    parsed_plan += " " + query_plan_parser.annotation.get_conjuction()
+    parsed_plan = algorithms.annotation.parse_plan(plan["Plans"][0], start)
+    parsed_plan += " " + algorithms.annotation.get_conjuction()
     if len(plan["Group Key"]) == 1:
         parsed_plan += "the result from the previous operation is grouped together using the key "
         parsed_plan += plan["Group Key"][0].replace("::text", "") + "."

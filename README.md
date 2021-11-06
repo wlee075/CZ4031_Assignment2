@@ -43,7 +43,7 @@ Project 2 CZ4031 Nanyang Technological University. Script to generate and parse 
 
 #### Parser test
 
-To test the each individual parser. Just move to `query_plan_parser/` and execute `python [parser_name].py`. It will run unit test in each parser.
+To test the each individual parser. Just move to `algorithms/` and execute `python [parser_name].py`. It will run unit test in each parser.
 
 ## Source
 
@@ -59,7 +59,7 @@ Receive query plan in JSON format. Parse the query plan recursively and return t
 
 ### Handled Operation
 
-The following operation is supported in this [parser](query_plan_parser/):
+The following operation is supported in this [parser](algorithms/):
 
 - Scan
   - Function Scan

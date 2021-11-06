@@ -4,25 +4,25 @@ Main file to parse query plan
 
 import random
 
-import query_plan_parser.generic_parser as generic
-import query_plan_parser.hash_join_parser as hash_join
-import query_plan_parser.sort_parser as sort
-import query_plan_parser.aggregate_parser as aggregate
-import query_plan_parser.seq_scan_parser as seq_scan
-import query_plan_parser.hash_parser as hash_parser
-import query_plan_parser.merge_join_parser as merge_join
-import query_plan_parser.limit_parser as limit
-import query_plan_parser.unique_parser as unique
-import query_plan_parser.function_scan_parser as function_scan
-import query_plan_parser.index_scan_parser as index_scan
-import query_plan_parser.values_scan_parser as values_scan
-import query_plan_parser.nested_loop_parser as nested_loop
-import query_plan_parser.cte_scan_parser as cte_scan
-import query_plan_parser.append_parser as append
-import query_plan_parser.materialize_parser as materialize
-import query_plan_parser.subquery_scan_parser as subquery_scan
-import query_plan_parser.setop_parser as setop
-import query_plan_parser.group_parser as group
+import algorithms.generic_parser as generic
+import algorithms.hash_join_parser as hash_join
+import algorithms.sort_parser as sort
+import algorithms.aggregate_parser as aggregate
+import algorithms.seq_scan_parser as seq_scan
+import algorithms.hash_parser as hash_parser
+import algorithms.merge_join_parser as merge_join
+import algorithms.limit_parser as limit
+import algorithms.unique_parser as unique
+import algorithms.function_scan_parser as function_scan
+import algorithms.index_scan_parser as index_scan
+import algorithms.values_scan_parser as values_scan
+import algorithms.nested_loop_parser as nested_loop
+import algorithms.cte_scan_parser as cte_scan
+import algorithms.append_parser as append
+import algorithms.materialize_parser as materialize
+import algorithms.subquery_scan_parser as subquery_scan
+import algorithms.setop_parser as setop
+import algorithms.group_parser as group
 
 class ParserSelector:
     """ ParserSelectorClass """
