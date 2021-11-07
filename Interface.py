@@ -76,42 +76,42 @@ class InterfaceApp(Tk):
 
         '''button for queries'''
         self.button_set = Button(
-            self.frame_query, text="q1",
+            self.entry_query, text="q1",
             width=5,command=self.q1_plan)
         self.button_set.pack(side=RIGHT)
 
         self.button_set = Button(
-            self.frame_query, text="q10",
+            self.entry_query, text="q10",
             width=5,command=self.q10_plan)
         self.button_set.pack(side=RIGHT)
         
         self.button_set = Button(
-            self.frame_query, text="q12",
+            self.entry_query, text="q12",
             width=5,command=self.q12_plan)
         self.button_set.pack(side=RIGHT)
 
         self.button_set = Button(
-            self.frame_query, text="q14",
+            self.entry_query, text="q14",
             width=5,command=self.q14_plan)
         self.button_set.pack(side=RIGHT)
 
         self.button_set = Button(
-            self.frame_query, text="q19",
+            self.entry_query, text="q19",
             width=5,command=self.q19_plan)
         self.button_set.pack(side=RIGHT)
 
         self.button_set = Button(
-            self.frame_query, text="q3",
+            self.entry_query, text="q3",
             width=5,command=self.q3_plan)
         self.button_set.pack(side=RIGHT)
 
         self.button_set = Button(
-            self.frame_query, text="q5",
+            self.entry_query, text="q5",
             width=5,command=self.q5_plan)
         self.button_set.pack(side=RIGHT)
 
         self.button_set = Button(
-            self.frame_query, text="q6",
+            self.entry_query, text="q6",
             width=5,command=self.q6_plan)
         self.button_set.pack(side=RIGHT)
         
