@@ -2,9 +2,9 @@
     "db":{
         "host": "localhost",
         "port": "5432",
-        "database": "TPC-H",
+        "database": "tpc-h",
         "username": "postgres",
-        "password": "root"   
+        "password": "admin"   
     },
     "cli":{
         "desc_plan": true,

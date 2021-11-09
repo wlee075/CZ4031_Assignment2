@@ -156,7 +156,7 @@ class InterfaceApp(Tk):
 
     def q1_plan(self):
         self.entry_query.delete("1.0", END)
-        self.entry_query.insert("1.0","SELECT l_returnflag,l_linestatus,sum(l_quantity) as sum_qty,sum(l_extendedprice) as sum_base_price,sum(l_extendedprice * (1 - l_discount)) as sum_disc_price,sum(l_extendedprice * (1 - l_discount) * (1 + l_tax)) as sum_charge,avg(l_quantity) as avg_qty,avg(l_extendedprice) as avg_price,avg(l_discount) as avg_disc,count(*) as count_order FROM lineitem WHERE 1_shipdate <= date '1998-12-01' - interval '90' day GROUP BY 1_returnflag,l_linestatus ORDER BY l_returnflag,l_linestatus;")
+        self.entry_query.insert("1.0","SELECT l_returnflag,l_linestatus,sum(l_quantity) as sum_qty,sum(l_extendedprice) as sum_base_price,sum(l_extendedprice * (1 - l_discount)) as sum_disc_price,sum(l_extendedprice * (1 - l_discount) * (1 + l_tax)) as sum_charge,avg(l_quantity) as avg_qty,avg(l_extendedprice) as avg_price,avg(l_discount) as avg_disc,count(*) as count_order FROM lineitem WHERE l_shipdate <= date '1998-12-01' - interval '90' day GROUP BY l_returnflag,l_linestatus ORDER BY l_returnflag,l_linestatus;")
 
     def q10_plan(self):
         self.entry_query.delete("1.0", END)
