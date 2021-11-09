@@ -63,6 +63,7 @@ class InterfaceApp(Tk):
         self.entry_password = Entry(self, show='*', textvariable=self.entry_var_password)
         self.entry_password.grid(column=1, row=4, columnspan=3, sticky='EW')
         self.entry_var_password.set(password)
+        
 
         '''button to derive query plan'''
         self.label_query = Label(self, text="Query:", anchor="w")
@@ -72,48 +73,43 @@ class InterfaceApp(Tk):
         self.button_query = Button(
             self.frame_query, text="Derive query plan",
             width=20, command=self.explain_query)
-        self.button_query.pack(side=BOTTOM)
+        self.button_query.pack(side=RIGHT)
 
         '''button for queries'''
         self.button_set = Button(
-            self.frame_query, text="q1",
-            width=5,command=self.q1_plan)
-        self.button_set.pack(side=RIGHT)
-
-        self.button_set = Button(
-            self.frame_query, text="q10",
-            width=5,command=self.q10_plan)
-        self.button_set.pack(side=RIGHT)
-        
-        self.button_set = Button(
-            self.frame_query, text="q12",
-            width=5,command=self.q12_plan)
-        self.button_set.pack(side=RIGHT)
+            self.frame_query, text="q19",
+            width=5,command=self.q19_plan)
+        self.button_set.pack(side=TOP)
 
         self.button_set = Button(
             self.frame_query, text="q14",
-            width=5,command=self.q14_plan)
-        self.button_set.pack(side=RIGHT)
+            width=5,command=self.q14_plan).place(x=264, y=0)
+     
+        
+        self.button_set = Button(
+            self.frame_query, text="q12",
+            width=5,command=self.q12_plan).place(x=220, y=0)
 
         self.button_set = Button(
-            self.frame_query, text="q19",
-            width=5,command=self.q19_plan)
-        self.button_set.pack(side=RIGHT)
-
-        self.button_set = Button(
-            self.frame_query, text="q3",
-            width=5,command=self.q3_plan)
-        self.button_set.pack(side=RIGHT)
-
-        self.button_set = Button(
-            self.frame_query, text="q5",
-            width=5,command=self.q5_plan)
-        self.button_set.pack(side=RIGHT)
+            self.frame_query, text="q10",
+            width=5,command=self.q10_plan).place(x=176, y=0)
 
         self.button_set = Button(
             self.frame_query, text="q6",
-            width=5,command=self.q6_plan)
-        self.button_set.pack(side=RIGHT)
+            width=5,command=self.q6_plan).place(x=132, y=0)
+
+        self.button_set = Button(
+            self.frame_query, text="q5",
+            width=5,command=self.q5_plan).place(x=88, y=0)
+        
+        self.button_set = Button(
+            self.frame_query, text="q3",
+            width=5,command=self.q3_plan).place(x=44, y=0)
+        
+        self.button_set = Button(
+            self.frame_query, text="q1",
+            width=5,command=self.q1_plan).place(x=0, y=0)
+        
         
         self.entry_query = Text(self.frame_query, height=10, wrap=WORD)
         self.entry_query.pack(side='left', fill='both', expand=True)
@@ -131,7 +127,7 @@ class InterfaceApp(Tk):
         self.button_plan = Button(
             self.frame_plan, text="Parse",
             width=20, command=self.parse_plan)
-        self.button_plan.pack(side=BOTTOM)
+        self.button_plan.pack(side=RIGHT)
         self.entry_plan = Text(self.frame_plan, height=10, wrap=WORD)
         self.entry_plan.pack(side='left', fill='both', expand=True)
         self.scrollbar_plan = Scrollbar(self.frame_plan)
