@@ -9,7 +9,7 @@ def Nested_loopAlgorithm(plan, start=False):
     """ Nested Loop Parser """
     result = ""
 
-    # Get the text of it's child
+    # Get the text of its child
     temp = Annotation.parse_plan(plan["Plans"][0], start)
     result += temp + " "
     temp = Annotation.parse_plan(plan["Plans"][1])
