@@ -21,10 +21,9 @@ def SortAlgorithm(plan, start=False):
     if plan["Node Type"] == "Sort":
         result += Annotation.get_conjuction(start)
         result += "the result is sorted by using attribute "
-        if "DESC" in plan["Sort Key"]:
-            result += str(plan["Sort Key"].replace('DESC', '')) +" in descending order."
-        elif "INC" in plan["Sort Key"]:
-            result += str(plan["Sort Key"].replace('INC', '')) +" in increasing order."
+        if "DESC" in str(plan["Sort Key"]):
+            result += str(plan["Sort Key"]).replace('DESC', '')+" in descending order."
+
         else:
             result += str(plan["Sort Key"])+ "."
 
