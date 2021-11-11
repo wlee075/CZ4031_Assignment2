@@ -83,7 +83,7 @@ def init_plan(plan, start=False):
     if "Parent Relationship" in plan:
         if plan["Parent Relationship"] == "InitPlan":
             result = get_conjuction(start)
-            result += "the " + plan["Node Type"]
+            result += "The " + plan["Node Type"]
             result += " node and its subsequent child node will be executed first"
             result += " since the result from this node needs to be calculated initially"
             result += " and it is only calculated once for the whole query. "

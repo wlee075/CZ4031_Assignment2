@@ -168,7 +168,7 @@ class InterfaceApp(Tk):
         self.label_query.grid(column=0, row=13, columnspan=3, sticky='nw')
         # self.frame_query = Frame(self)
         # self.frame_query.grid(column=0, row=14, columnspan=3, sticky='nw')
-        self.label_parsed_plan = Label(self, text="Parsed Query \n Plan:",anchor="nw")
+        self.label_parsed_plan = Label(self, text="Annotation:",anchor="nw")
         self.label_parsed_plan.grid(column=0, row=14, columnspan=3, sticky='nw')
         self.entry_parsed_plan = Text(self, height=10, wrap=WORD)
         # self.entry_parsed_plan.pack(side='left', fill='both', expand=True)
@@ -236,7 +236,16 @@ class InterfaceApp(Tk):
         query_plan = json.loads(self.entry_plan.get("1.0", END))
         parsed_plan = self.explanator.parse(query_plan)
         self.entry_parsed_plan.delete("1.0", END)
-        self.entry_parsed_plan.insert("1.0", json.dumps(parsed_plan, indent=4))
+        print(json.dumps(parsed_plan, indent=4))
+        text = str(json.dumps(parsed_plan, indent=4).replace('\\"', '"').replace("('","(")[1:][:-1])
+        text = text.replace("Firstly, ", "Step 1:\n")
+        text = text.replace("Next, ", "Steps,").replace("Afterwards, ", "Steps,").replace("Thereafter, ", "Steps,").replace("Subsequently, ", "Steps,").replace("Then, ", "Steps,")
+        text = text.replace("Steps,", "\nStep 2: \n", 1)
+        text = text.replace("Steps,", "\nStep 3:\n", 1)
+        text = text.replace("Steps,", "\nStep 4: \n", 1)
+        text = text.replace("Steps,", "\nStep 5: \n", 1)
+        text = text.replace("Steps,", "\nStep 6: \n", 1)
+        self.entry_parsed_plan.insert("1.0", text)
 
 class Explain:
     """ Class to explain query """

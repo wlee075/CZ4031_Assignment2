@@ -9,7 +9,7 @@ def SetopAlgorithm(plan, start=False):
     """ SetOp Parser """
     result = Annotation.parse_plan(plan["Plans"][0], start)
     result += " " + Annotation.get_conjuction()
-    result += "it finds the "
+    result += "It finds the "
     cmd_name = str(plan["Command"])
     if cmd_name == "Except" or cmd_name == "Except All":
         result += "differences "

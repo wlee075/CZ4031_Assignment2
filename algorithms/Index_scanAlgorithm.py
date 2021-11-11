@@ -21,7 +21,7 @@ def Index_scanAlgorithm(plan, start=False):
             result += " The result is then filtered by "+ plan["Filter"].replace('::text', '') +"."
 
     elif plan["Node Type"] == "Index Only Scan":
-        result += "it does an index scan by using an index table "+ plan["Index Name"]
+        result += "It does an index scan by using an index table "+ plan["Index Name"]
         if "Index Cond" in plan:
             result += " with condition(s) "+ plan["Index Cond"].replace('::text', '')
         result += ". It returns the matches found in index table scan as the result."

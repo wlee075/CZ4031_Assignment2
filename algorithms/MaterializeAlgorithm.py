@@ -20,7 +20,7 @@ def MaterializeAlgorithm(plan, start=False):
     #Parse the materialize
     if plan["Node Type"] == "Materialize":
         result += Annotation.get_conjuction(start)
-        result += "the results will be stored in the memory for more efficient access. "
+        result += "The results will be stored in the memory for more efficient access. "
 
     return result
 

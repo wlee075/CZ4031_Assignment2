@@ -8,7 +8,7 @@ import Annotation
 def Seq_scanAlgorithm(plan, start=False):
     """ Parser for the Seq Scan Node Type"""
     sentence = Annotation.get_conjuction(start)
-    sentence += "it does a sequential scan on relation "
+    sentence += "It does a sequential scan on relation "
     if "Relation Name" in plan:
         sentence += plan['Relation Name']
     if "Alias" in plan:

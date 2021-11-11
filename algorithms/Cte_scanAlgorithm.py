@@ -11,7 +11,7 @@ def Cte_scanAlgorithm(plan, start=False):
 
     # Parse the values scan
     if plan["Node Type"] == "CTE Scan":
-        result += "it does a CTE scan throughout the table "
+        result += "It does a CTE scan throughout the table "
         result += str(plan["CTE Name"]) + " which will be stored in the memory "
         if "Index Cond" in plan:
             result += " with condition(s) "+ plan["Index Cond"].replace('::text', '')

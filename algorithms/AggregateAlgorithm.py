@@ -1,49 +1,46 @@
 """
 Parser for GroupAggregate node type
 """
-
-import json
 import Annotation
-
-def AggregateAlgorithm(plan, start=False):
+import json
+def AggregateAlgorithm(queryplan, isStart=False):
     """ Parser for Aggregate node type """
 
-    if plan["Strategy"] == "Sorted":
-        parsed_plan = Annotation.parse_plan(plan["Plans"][0], start)
+    if queryplan["Strategy"] == "Sorted":
+        parsedplan = Annotation.parse_plan(queryplan["Plans"][0], isStart) + " "
+        parsedplan += Annotation.get_conjuction()
 
-        parsed_plan += " " + Annotation.get_conjuction()
+        if "Group Key" in queryplan:
+            parsedplan += "The result is grouped by "
+            for group_key in queryplan["Group Key"]:
+                parsedplan += group_key.replace("::text", "") + ", "
+            parsedplan = parsedplan[:-2]
+        if "Filter" in queryplan:
+            parsedplan += " and bounded with the condition(s) " + queryplan["Filter"].replace("::text", "")
+        parsedplan += "."
+        return parsedplan
 
-        if "Group Key" in plan:
-            parsed_plan += "the result is grouped by "
-            for group_key in plan["Group Key"]:
-                parsed_plan += group_key.replace("::text", "") + ", "
-            parsed_plan = parsed_plan[:-2]
-        if "Filter" in plan:
-            parsed_plan += " and bounded with the condition(s) " + plan["Filter"].replace("::text", "")
-        parsed_plan += "."
-        return parsed_plan
+    if queryplan["Strategy"] == "Hashed":
+        text = Annotation.get_conjuction()
 
-    if plan["Strategy"] == "Hashed":
-        sentence = Annotation.get_conjuction()
-
-        if len(plan["Group Key"]) == 1:
-            sentence += "it hashes all the rows based on the key "
-            sentence += plan["Group Key"][0].replace("::text", "") + ", "
+        if len(queryplan["Group Key"]) == 1:
+            text += "It hashes all the rows based on the key "
+            text += queryplan["Group Key"][0].replace("::text", "") + ", "
         else:
-            sentence += "it hashes all the rows based on the keys "
-            for i in plan["Group Key"]:
-                sentence += i.replace("::text", "") + ", "
-        sentence += "then returns the desired row after processing."
+            text += "It hashes all the rows based on the keys "
+            for i in queryplan["Group Key"]:
+                text += i.replace("::text", "") + ", "
+        text += "then returns the desired row after processing."
 
-        parsed_plan = Annotation.parse_plan(plan["Plans"][0], start)
-        parsed_plan += " " + sentence
-        return parsed_plan
+        parsedplan = Annotation.parse_plan(queryplan["Plans"][0], isStart)
+        parsedplan += " " + text
+        return parsedplan
 
-    if plan["Strategy"] == "Plain":
-        parsed_plan = Annotation.parse_plan(plan["Plans"][0], start) + " "
-        parsed_plan += Annotation.get_conjuction()
-        parsed_plan += "the result will be aggregated."
-        return parsed_plan
+    if queryplan["Strategy"] == "Plain":
+        parsedplan = Annotation.parse_plan(queryplan["Plans"][0], isStart) + " "
+        parsedplan += Annotation.get_conjuction()
+        parsedplan += "The result will be aggregated."
+        return parsedplan
 
 
 if __name__ == "__main__":
@@ -77,7 +74,7 @@ if __name__ == "__main__":
     }
     '''
     JSON_PLAN = json.loads(PLAN)
-    print(AggregateAlgorithm(JSON_PLAN, start=True))
+    print(AggregateAlgorithm(JSON_PLAN, isStart=True))
 
     PLAN2 = '''
     {                                                   

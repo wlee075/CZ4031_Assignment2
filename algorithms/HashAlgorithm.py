@@ -13,7 +13,7 @@ def HashAlgorithm(plan, start=False):
         sentence += " The hash function makes a memory hash with rows from the source."
     else:
         sentence = Annotation.get_conjuction(start)
-        sentence += "the hash function makes a memory hash with rows from the source."
+        sentence += "The hash function makes a memory hash with rows from the source."
 
     return sentence
 

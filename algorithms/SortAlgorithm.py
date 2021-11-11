@@ -20,7 +20,7 @@ def SortAlgorithm(plan, start=False):
     # Parse the Sort
     if plan["Node Type"] == "Sort":
         result += Annotation.get_conjuction(start)
-        result += "the result is sorted by using attribute "
+        result += "The result is sorted by using attribute "
         if "DESC" in str(plan["Sort Key"]):
             result += str(plan["Sort Key"]).replace('DESC', '')+" in descending order."
 

@@ -10,7 +10,7 @@ def GroupAlgorithm(plan, start=False):
     parsed_plan = Annotation.parse_plan(plan["Plans"][0], start)
     parsed_plan += " " + Annotation.get_conjuction()
     if len(plan["Group Key"]) == 1:
-        parsed_plan += "the result from the previous operation is grouped together using the key "
+        parsed_plan += "The result from the previous operation is grouped together using the key "
         parsed_plan += plan["Group Key"][0].replace("::text", "") + "."
     else:
         parsed_plan += "result from the previous operation is grouped together using the key "
