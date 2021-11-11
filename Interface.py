@@ -24,7 +24,8 @@ class InterfaceApp(Tk):
 
         Tk.__init__(self, parent)
         self.parent = parent
-        self.minsize(width=800, height=500)
+        self.minsize(1900,900)
+        self.maxsize(1900,900)
         self.initialize(host, port, dbname, user, password)
 
     def initialize(self, host, port, dbname, user, password):
@@ -64,90 +65,122 @@ class InterfaceApp(Tk):
         self.entry_password.grid(column=1, row=4, columnspan=3, sticky='EW')
         self.entry_var_password.set(password)
         
-
+        self.label_query = Label(self, text="", anchor="w")
+        self.label_query.grid(column=0, row=5, columnspan=1, sticky='W'
+        )
         '''button to derive query plan'''
+        # self.frame_query = Frame(self)
+        # self.frame_query.grid(column=0, row=6,  sticky='W')
         self.label_query = Label(self, text="Query:", anchor="w")
-        self.label_query.grid(column=0, row=5, columnspan=1, sticky='W')
+        self.label_query.grid(column=0, row=6, columnspan=1, sticky='W')
         self.frame_query = Frame(self)
-        self.frame_query.grid(column=1, row=6, columnspan=6, rowspan=1, sticky='W')
-        self.button_query = Button(
-            self.frame_query, text="Derive query plan",
-            width=20, command=self.explain_query)
-        self.button_query.pack(side=RIGHT)
+        self.frame_query.grid(column=1, row=6,  sticky='W')
+        
 
-        '''button for queries'''
+        '''button for queries'''     
         self.button_set = Button(
-            self.frame_query, text="q19",
-            width=5,command=self.q19_plan)
-        self.button_set.pack(side=TOP)
+            self.frame_query, text="q1",
+            width=5,command=self.q1_plan)
+        self.button_set.pack(side=LEFT)
 
         self.button_set = Button(
-            self.frame_query, text="q14",
-            width=5,command=self.q14_plan).place(x=264, y=0)
-     
+            self.frame_query, text="q3",
+            width=5,command=self.q3_plan)
+        self.button_set.pack(side=LEFT)
         
         self.button_set = Button(
-            self.frame_query, text="q12",
-            width=5,command=self.q12_plan).place(x=220, y=0)
-
-        self.button_set = Button(
-            self.frame_query, text="q10",
-            width=5,command=self.q10_plan).place(x=176, y=0)
+            self.frame_query, text="q5",
+            width=5,command=self.q5_plan)
+        self.button_set.pack(side=LEFT)
 
         self.button_set = Button(
             self.frame_query, text="q6",
-            width=5,command=self.q6_plan).place(x=132, y=0)
+            width=5,command=self.q6_plan)
+        self.button_set.pack(side=LEFT)
 
         self.button_set = Button(
-            self.frame_query, text="q5",
-            width=5,command=self.q5_plan).place(x=88, y=0)
-        
+            self.frame_query, text="q10",
+            width=5,command=self.q10_plan)
+        self.button_set.pack(side=LEFT)
+
         self.button_set = Button(
-            self.frame_query, text="q3",
-            width=5,command=self.q3_plan).place(x=44, y=0)
-        
+            self.frame_query, text="q12",
+            width=5,command=self.q12_plan)
+        self.button_set.pack(side=LEFT)
+
         self.button_set = Button(
-            self.frame_query, text="q1",
-            width=5,command=self.q1_plan).place(x=0, y=0)
-        
-        
+            self.frame_query, text="q14",
+            width=5,command=self.q14_plan)
+        self.button_set.pack(side=LEFT)
+
+        self.button_set = Button(
+            self.frame_query, text="q19",
+            width=5,command=self.q19_plan)
+        self.button_set.pack(side=LEFT)
+
+      
+        self.frame_query = Frame(self)
         self.entry_query = Text(self.frame_query, height=10, wrap=WORD)
-        self.entry_query.pack(side='left', fill='both', expand=True)
-        self.scrollbar_query = Scrollbar(self.frame_query)
-        self.entry_query.config(yscrollcommand=self.scrollbar_query.set)
-        self.scrollbar_query.config(command=self.entry_query.yview)
-        self.grid()
-        self.scrollbar_query.pack(side='right', fill='y')
+        self.frame_query.grid(column=1, row=8, columnspan=3, sticky='W')
+        self.entry_query.pack(side=LEFT)
+        #self.entry_query.pack(side='left', fill='both', expand=True)
+        # self.scrollbar_query = Scrollbar(self.frame_query)
+        # self.entry_query.config(yscrollcommand=self.scrollbar_query.set)
+        # self.scrollbar_query.config(command=self.entry_query.yview)
+        # self.entry_query.grid(column=1, row=8, columnspan=1, sticky='W')
+        #self.scrollbar_query.pack(side='right', fill='y')
+
+        self.frame_query = Frame(self)
+        self.frame_query.grid(column=1, row=9, columnspan=3, sticky='W')
+        self.button_query = Button(
+            self.frame_query, text="Derive query plan",
+            width=20, command=self.explain_query)
+        self.button_query.pack(side=LEFT)
 
         '''button to parse query plan, annotate'''
-        self.label_plan = Label(self, text="Query Plan:", anchor="w")
-        self.label_plan.grid(column=0, row=8, columnspan=1, sticky='W')
-        self.frame_plan = Frame(self)
-        self.frame_plan.grid(column=1, row=9, columnspan=6, rowspan=1, sticky='W')
+        self.frame_query = Frame(self)
+        self.frame_query.grid(column=0, row=10, columnspan=3, sticky='W')
+        self.label_query = Label(self.frame_query, text="", anchor="w")
+        self.label_query.pack(side=LEFT)
+        self.frame_query = Frame(self)
+        self.frame_query.grid(column=0, row=11, columnspan=3, sticky='nw')
+        self.label_plan = Label(self.frame_query, text="Query Plan:", anchor="nw")
+        self.label_plan.pack(side=LEFT)
+        self.entry_plan = Text(self, height=10, wrap=WORD)
+        self.entry_plan.grid(column=1, row=11, columnspan=3, sticky='W')
         self.button_plan = Button(
-            self.frame_plan, text="Parse",
+            self, text="Parse",
             width=20, command=self.parse_plan)
-        self.button_plan.pack(side=RIGHT)
-        self.entry_plan = Text(self.frame_plan, height=10, wrap=WORD)
-        self.entry_plan.pack(side='left', fill='both', expand=True)
-        self.scrollbar_plan = Scrollbar(self.frame_plan)
-        self.entry_plan.config(yscrollcommand=self.scrollbar_plan.set)
-        self.scrollbar_plan.config(command=self.entry_plan.yview)
-        self.grid()
-        self.scrollbar_plan.pack(side='right', fill='y')
+        self.button_plan.grid(column=1, row=12, columnspan=3, sticky='W')
+        # self.label_plan.grid(column=0, row=8, columnspan=1, sticky='W')
+        # self.frame_plan = Frame(self)
+        # self.frame_plan.grid(column=1, row=9, columnspan=6, rowspan=1, sticky='W')
+        
+       
+        # self.entry_plan.pack(side='left', fill='both', expand=True)
+        # self.scrollbar_plan = Scrollbar(self.frame_plan)
+        # self.entry_plan.config(yscrollcommand=self.scrollbar_plan.set)
+        # self.scrollbar_plan.config(command=self.entry_plan.yview)
+        # self.grid()
+        # self.scrollbar_plan.pack(side='right', fill='y')
 
-        self.label_parsed_plan = Label(self, text="Parsed Query Plan:", anchor="w")
-        self.label_parsed_plan.grid(column=0, row=10, columnspan=1, sticky='W')
-        self.frame_parsed_plan = Frame(self)
-        self.frame_parsed_plan.grid(column=1, row=11, columnspan=6, rowspan=1, sticky='W')
-        #self.button_parsed_plan.pack(side=BOTTOM)
-        self.entry_parsed_plan = Text(self.frame_parsed_plan, height=10, wrap=WORD)
+        self.label_query = Label(self, text="", anchor="nw")
+        self.label_query.grid(column=0, row=13, columnspan=3, sticky='nw')
+        self.frame_query = Frame(self)
+        self.frame_query.grid(column=0, row=14, columnspan=3, sticky='nw')
+        self.label_parsed_plan = Label(self.frame_query, text="Parsed Query Plan:", anchor="nw")
+        self.label_parsed_plan.pack(side=LEFT)
+        self.entry_parsed_plan = Text(self.frame_query, height=10, wrap=WORD)
         self.entry_parsed_plan.pack(side='left', fill='both', expand=True)
-        self.scrollbar_parsed_plan = Scrollbar(self.frame_parsed_plan)
-        self.entry_parsed_plan.config(yscrollcommand=self.scrollbar_parsed_plan.set)
-        self.scrollbar_parsed_plan.config(command=self.entry_parsed_plan.yview)
-        self.grid()
-        self.scrollbar_parsed_plan.pack(side='right', fill='y')
+        # self.frame_parsed_plan = Frame(self)
+        # self.frame_parsed_plan.grid(column=1, row=11, columnspan=6, rowspan=1, sticky='W')
+        # #self.button_parsed_plan.pack(side=BOTTOM)
+       
+        # self.scrollbar_parsed_plan = Scrollbar(self.frame_parsed_plan)
+        # self.entry_parsed_plan.config(yscrollcommand=self.scrollbar_parsed_plan.set)
+        # self.scrollbar_parsed_plan.config(command=self.entry_parsed_plan.yview)
+        # self.grid()
+        # self.scrollbar_parsed_plan.pack(side='right', fill='y')
 
 
     def q1_plan(self):
