@@ -24,8 +24,8 @@ class InterfaceApp(Tk):
 
         Tk.__init__(self, parent)
         self.parent = parent
-        self.minsize(1900,900)
-        self.maxsize(1900,900)
+        self.minsize(730,750)
+        self.maxsize(730,750)
         self.initialize(host, port, dbname, user, password)
 
     def initialize(self, host, port, dbname, user, password):
@@ -166,12 +166,13 @@ class InterfaceApp(Tk):
 
         self.label_query = Label(self, text="", anchor="nw")
         self.label_query.grid(column=0, row=13, columnspan=3, sticky='nw')
-        self.frame_query = Frame(self)
-        self.frame_query.grid(column=0, row=14, columnspan=3, sticky='nw')
-        self.label_parsed_plan = Label(self.frame_query, text="Parsed Query Plan:", anchor="nw")
-        self.label_parsed_plan.pack(side=LEFT)
-        self.entry_parsed_plan = Text(self.frame_query, height=10, wrap=WORD)
-        self.entry_parsed_plan.pack(side='left', fill='both', expand=True)
+        # self.frame_query = Frame(self)
+        # self.frame_query.grid(column=0, row=14, columnspan=3, sticky='nw')
+        self.label_parsed_plan = Label(self, text="Parsed Query \n Plan:",anchor="nw")
+        self.label_parsed_plan.grid(column=0, row=14, columnspan=3, sticky='nw')
+        self.entry_parsed_plan = Text(self, height=10, wrap=WORD)
+        # self.entry_parsed_plan.pack(side='left', fill='both', expand=True)
+        self.entry_parsed_plan.grid(column=1, row=14, columnspan=3, sticky='w')
         # self.frame_parsed_plan = Frame(self)
         # self.frame_parsed_plan.grid(column=1, row=11, columnspan=6, rowspan=1, sticky='W')
         # #self.button_parsed_plan.pack(side=BOTTOM)
