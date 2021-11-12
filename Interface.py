@@ -16,47 +16,47 @@ except ImportError:
 
 class InterfaceApp(Tk):
     """ App class for Query Plan """
-    def __init__(self, parent, host, port, dbname, user, password):
+    def __init__(self, parent, hostName, portName, dbName, userName, password):
         self.explanator = Explain(
-            host, port, dbname, user, password,
-            desc=False, voice=False, debug=False
+            hostName, portName, dbName, userName, password,
+            desc=False, debug=False
         )
 
         Tk.__init__(self, parent)
         self.parent = parent
         self.minsize(730,750)
         self.maxsize(730,750)
-        self.initialize(host, port, dbname, user, password)
+        self.initialize(hostName, portName, dbName, userName, password)
 
-    def initialize(self, host, port, dbname, user, password):
+    def initialize(self, hostName, portName, dbName, userName, password):
         """ GUI Initialization """
         self.label_host = Label(self, text="Host:", width=10, anchor="w")
         self.label_host.grid(column=0, row=0, columnspan=1, sticky='W')
         self.entry_var_host = StringVar()
         self.entry_host = Entry(self, textvariable=self.entry_var_host)
         self.entry_host.grid(column=1, row=0, columnspan=3, sticky='EW')
-        self.entry_var_host.set(host)
+        self.entry_var_host.set(hostName)
 
         self.label_database = Label(self, text="Database:", width=10, anchor="w")
         self.label_database.grid(column=0, row=1, columnspan=1, sticky='W')
         self.entry_var_database = StringVar()
         self.entry_database = Entry(self, textvariable=self.entry_var_database)
         self.entry_database.grid(column=1, row=1, columnspan=3, sticky='EW')
-        self.entry_var_database.set(dbname)
+        self.entry_var_database.set(dbName)
 
         self.label_port = Label(self, text="Port:", width=10, anchor="w")
         self.label_port.grid(column=0, row=2, columnspan=1, sticky='W')
         self.entry_var_port = StringVar()
         self.entry_port = Entry(self, textvariable=self.entry_var_port)
         self.entry_port.grid(column=1, row=2, columnspan=3, sticky='EW')
-        self.entry_var_port.set(port)
+        self.entry_var_port.set(portName)
 
         self.label_username = Label(self, text="Username:", width=10, anchor="w")
         self.label_username.grid(column=0, row=3, columnspan=1, sticky='W')
         self.entry_var_username = StringVar()
         self.entry_username = Entry(self, textvariable=self.entry_var_username)
         self.entry_username.grid(column=1, row=3, columnspan=3, sticky='EW')
-        self.entry_var_username.set(user)
+        self.entry_var_username.set(userName)
 
         self.label_password = Label(self, text="Password:", width=10, anchor="w")
         self.label_password.grid(column=0, row=4, columnspan=1, sticky='W')
@@ -224,7 +224,7 @@ class InterfaceApp(Tk):
             dbname=self.entry_var_database.get(),
             user=self.entry_var_username.get(),
             password=self.entry_var_password.get(),
-            desc=False, voice=False, debug=False
+            desc=False, debug=False
         )
         query = self.entry_query.get("1.0", END)
         queryPlan = self.explanator.performExplanation(query=query)
@@ -251,15 +251,15 @@ class Explain:
     """ Class to explain query """
     def __init__(
             self, host, port, dbname, user, password,
-            desc=True, voice=False, debug=False
+            desc=True, debug=False
         ):
         """ init Explain """
-        conn_string = "host='%s' port='%s' dbname='%s' user='%s' password='%s'"%(
+        connectionString = "host='%s' port='%s' dbname='%s' user='%s' password='%s'"%(
             host, port, dbname, user, password)
-        self.conn = psycopg2.connect(conn_string)
-        self.cursor = self.conn.cursor()
+        self.connection = psycopg2.connect(connectionString)
+        self.cursor = self.connection.cursor()
         
-        logging.info("Connected to database: " + conn_string)
+        logging.info("Connected to database: " + connectionString)
 
         self.desc = desc
         self.debug = debug

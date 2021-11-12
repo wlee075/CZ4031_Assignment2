@@ -5,7 +5,7 @@ import json
 import logging
 
 
-def init_logger(log_file):
+def initialiseLogger(log_file):
     """ Initialize logger """
     logging.basicConfig(
         filename=log_file,
@@ -21,22 +21,22 @@ def main():
         conf = json.load(conf_file)
 
     log_path = conf["log"]["log_path"] + datetime.now().strftime("parser_%Y_%m_%d_%H_%M.log")
-    init_logger(log_path)
-    logging.info("Start logging")
+    initialiseLogger(log_path)
+    logging.info("Begin logging")
 
     db_conf = conf["db"]
     app = InterfaceApp(
         None,
-        host=db_conf["host"],
-        port=db_conf["port"],
-        dbname=db_conf["database"],
-        user=db_conf["username"],
+        hostName=db_conf["host"],
+        portName=db_conf["port"],
+        dbName=db_conf["database"],
+        userName=db_conf["username"],
         password=db_conf["password"]
     )
-    app.title('Postgres Query Explainator')
+    app.title('Postgres Explanator')
     app.mainloop()
 
-    logging.info("Finished logging")
+    logging.info("End logging")
 
 if __name__ == "__main__":
     main()
