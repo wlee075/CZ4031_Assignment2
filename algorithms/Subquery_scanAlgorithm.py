@@ -18,11 +18,6 @@ def Subquery_scanAlgorithm(plan, start=False):
     result += Annotation.get_conjuction(start)
     result += 'Perform subquery scan on the output of '
     result += 'earlier operations without any changes to the result '
-    """
-    result += 'Subquery Scan is performed on the result from '
-    result += 'the previous operations and output the result without any changes '
-    result += '(the purpose of Subquery scan is mainly for internal bookkeeping).'
-    """
     return result
 
 

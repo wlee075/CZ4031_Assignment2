@@ -18,7 +18,6 @@ def Nested_loopAlgorithm(plan, start=False):
 
     # Parse the nested loop
     result += "Next, return the join between both scans as new rows"
-    #result += "Afterwards, the join result between both scan results are returned as new rows."
 
     return result
 
