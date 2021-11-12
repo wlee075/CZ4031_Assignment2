@@ -238,7 +238,7 @@ class InterfaceApp(Tk):
         self.entry_parsed_plan.delete("1.0", END)
         print(json.dumps(parsed_plan, indent=4))
         text = str(json.dumps(parsed_plan, indent=4).replace('\\"', '"').replace("('","(")[1:][:-1])
-        text = text.replace("Firstly, ", "Step 1:\n")
+        text = text.replace("First of all, ", "Step 1:\n")
         text = text.replace("Next, ", "Steps,").replace("Afterwards, ", "Steps,").replace("Thereafter, ", "Steps,").replace("Subsequently, ", "Steps,").replace("Then, ", "Steps,")
         text = text.replace("Steps,", "\nStep 2: \n", 1)
         text = text.replace("Steps,", "\nStep 3:\n", 1)
