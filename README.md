@@ -23,6 +23,7 @@ Project 2 CZ4031 Nanyang Technological University. Script to generate and parse 
 - Move to this directory
 - Execute `python project.py`
 - Amend `host`, `database`, `port`, `username` and `password` if system settings differ from .config file
+- Select SQL from button selections
 - To generate query plan: Enter query in `Query` section and press `Explain`
 - To parse query plan: Enter query plan in `Query Plan` section or directly press `Parse`
 
@@ -71,16 +72,4 @@ The following operation is supported in this [parser](algorithms/):
 - Plan
   - SubPlan
   - InitPlan
-
-### Example Query
-
-The example query can be found [here](data/):
-- [Query 1](data/q1.sql)
-- [Query 3](data/q3.sql)
-- [Query 5](data/q5.sql)
-- [Query 6](data/q6.sql)
-- [Query 10](data/q10.sql)
-- [Query 12](data/q12.sql)
-- [Query 14](data/q14.sql)
-- [Query 19](data/q19.sql)
 
