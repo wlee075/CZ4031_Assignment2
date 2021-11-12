@@ -21,7 +21,6 @@ def AppendAlgorithm(plan, start=False):
     if plan["Node Type"] == "Append":
         result += Annotation.get_conjuction(start)
         result += "combine the scan results."
-        #result += "all of the scan results is combined into one."
 
     return result
 

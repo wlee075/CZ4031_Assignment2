@@ -1,12 +1,3 @@
-DROP TABLE IF EXISTS region;
-DROP TABLE IF EXISTS nation;
-DROP TABLE IF EXISTS part;
-DROP TABLE IF EXISTS supplier;
-DROP TABLE IF EXISTS partsupp;
-DROP TABLE IF EXISTS customer;
-DROP TABLE IF EXISTS orders;
-DROP TABLE IF EXISTS lineitem;
-
 CREATE TABLE region(
     r_regionkey integer NOT NULL,
 	r_name character(25) COLLATE pg_catalog."default" NOT NULL,
