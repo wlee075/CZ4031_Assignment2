@@ -23,8 +23,7 @@ Project 2 CZ4031 Nanyang Technological University. Script to generate and parse 
 - Move to this directory
 - Execute `python project.py`
 - Amend `host`, `database`, `port`, `username` and `password` if system settings differ from .config file
-- Select SQL from button selections
-- To generate query plan: Enter query in `Query` section and press `Explain`
+- Select SQL from button selections. Alternatively, enter query in `Query` section and press `Explain` to generate query plan 
 - To parse query plan: Enter query plan in `Query Plan` section or directly press `Parse`
 
 ## Source
