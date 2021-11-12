@@ -6,7 +6,7 @@ import json
 import logging
 import psycopg2
 
-from Annotation import parse_plan
+from Annotation import parsePlan
 try:
     # python 2.x
     from Tkinter import *
@@ -134,7 +134,7 @@ class InterfaceApp(Tk):
         self.frame_query.grid(column=1, row=9, columnspan=3, sticky='W')
         self.button_query = Button(
             self.frame_query, text="Derive query plan",
-            width=20, command=self.explain_query)
+            width=20, command=self.explainQuery)
         self.button_query.pack(side=LEFT)
 
         '''button to parse query plan, annotate'''
@@ -150,7 +150,7 @@ class InterfaceApp(Tk):
         self.entry_plan.grid(column=1, row=11, columnspan=3, sticky='W')
         self.button_plan = Button(
             self, text="Parse",
-            width=20, command=self.parse_plan)
+            width=20, command=self.parsePlan)
         self.button_plan.grid(column=1, row=12, columnspan=3, sticky='W')
         # self.label_plan.grid(column=0, row=8, columnspan=1, sticky='W')
         # self.frame_plan = Frame(self)
@@ -216,7 +216,7 @@ class InterfaceApp(Tk):
         self.entry_query.delete("1.0", END)
         self.entry_query.insert("1.0","SELECT sum(l_extendedprice * l_discount) as revenue FROM lineitem WHERE l_shipdate >= date '1994-01-01' AND l_shipdate < date '1994-01-01' + interval '1' year AND l_discount between 0.06 - 0.01 AND 0.06 + 0.01 AND l_quantity < 24;")
 
-    def explain_query(self):
+    def explainQuery(self):
         """ Explain query """
         self.explanator = Explain(
             host=self.entry_var_host.get(),
@@ -227,14 +227,14 @@ class InterfaceApp(Tk):
             desc=False, voice=False, debug=False
         )
         query = self.entry_query.get("1.0", END)
-        query_plan = self.explanator.explain(query=query)
+        queryPlan = self.explanator.performExplanation(query=query)
         self.entry_plan.delete("1.0", END)
-        self.entry_plan.insert("1.0", json.dumps(query_plan, indent=4))
+        self.entry_plan.insert("1.0", json.dumps(queryPlan, indent=4))
 
-    def parse_plan(self):
+    def parsePlan(self):
         """ Parse query plan """
-        query_plan = json.loads(self.entry_plan.get("1.0", END))
-        parsed_plan = self.explanator.parse(query_plan)
+        queryPlan = json.loads(self.entry_plan.get("1.0", END))
+        parsed_plan = self.explanator.performParse(queryPlan)
         self.entry_parsed_plan.delete("1.0", END)
         print(json.dumps(parsed_plan, indent=4))
         text = str(json.dumps(parsed_plan, indent=4).replace('\\"', '"').replace("('","(")[1:][:-1])
@@ -265,11 +265,11 @@ class Explain:
         self.debug = debug
 
         self.query = ""
-        self.query_plan = {}
+        self.queryPlan = {}
         self.parsed_plan = ""
 
 
-    def explain(self, query=None):
+    def performExplanation(self, query=None):
         """ explain query """
         if query:
             self.query = query
@@ -278,46 +278,25 @@ class Explain:
         try:
             self.cursor.execute("EXPLAIN (FORMAT JSON) " + self.query)
             plan = self.cursor.fetchall()
-            self.query_plan = plan[0][0][0]["Plan"]
+            self.queryPlan = plan[0][0][0]["Plan"]
         except:
             logging.error("Generate query plan execution failed")
-            self.query_plan = {}
+            self.queryPlan = {}
             self.parsed_plan = "Generate query plan execution failed"
             raise
         finally:
-            logging.info("Generated query plan: " + json.dumps(self.query_plan, indent=4))
+            logging.info("Generated query plan: " + json.dumps(self.queryPlan, indent=4))
 
-        return self.query_plan
-        
-    def loop_explain(self):
-        """ continuously explain queries """
-        print("postgres=# Please input query (end with ';')")
-        next_line = ""
-        self.query = ""
-        while next_line.strip().lower() != "quit":
-            next_line = input("postgres=# ")
-            self.query += "\n" + next_line.strip()
-            if self.query[-1] == ";":
-                try:
-                    self.explain()
-                    self.parse()
-                except Exception as exception:
-                    logging.error("Error for Explain.explain(): " + str(exception))
-                finally:
-                    if self.debug:
-                        print(json.dumps(self.query_plan, indent=4))
-                    if self.desc:
-                        print(self.parsed_plan)
-                    self.query = ""
+        return self.queryPlan
     
-    def parse(self, query_plan=None):
+    def performParse(self, queryPlan=None):
         """ Parse query plan """
-        if query_plan:
-            self.query_plan = query_plan
+        if queryPlan:
+            self.queryPlan = queryPlan
 
-        logging.info("Parsing plan: " + json.dumps(self.query_plan, indent=4))
+        logging.info("Parsing plan: " + json.dumps(self.queryPlan, indent=4))
         try:
-            self.parsed_plan = parse_plan(self.query_plan, start=True)
+            self.parsed_plan = parsePlan(self.queryPlan, start=True)
         except:
             logging.error("Parse query plan execution failed")
             self.parsed_plan = "Parse query plan execution failed"

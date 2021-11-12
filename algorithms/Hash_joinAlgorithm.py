@@ -9,8 +9,8 @@ def Hash_joinAlgorithm(plan, start=False):
     """ Hash join parser """
     result = ""
 
-    result += Annotation.parse_plan(plan["Plans"][1], start) + " "
-    result += Annotation.parse_plan(plan["Plans"][0]) + " "
+    result += Annotation.parsePlan(plan["Plans"][1], start) + " "
+    result += Annotation.parsePlan(plan["Plans"][0]) + " "
 
     result += "Hash join the result from the earlier operation "
     result += plan["Join Type"] + " Join"

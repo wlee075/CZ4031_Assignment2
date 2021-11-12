@@ -7,21 +7,21 @@ def AggregateAlgorithm(queryplan, isStart=False):
     """ Parser for Aggregate node type """
 
     if queryplan["Strategy"] == "Sorted":
-        parsedplan = Annotation.parse_plan(queryplan["Plans"][0], isStart) + " "
-        parsedplan += Annotation.get_conjuction()
+        parsedPlan = Annotation.parsePlan(queryplan["Plans"][0], isStart) + " "
+        parsedPlan += Annotation.getConjuction()
 
         if "Group Key" in queryplan:
-            parsedplan += "Group result by "
-            for group_key in queryplan["Group Key"]:
-                parsedplan += group_key.replace("::text", "") + ", "
-            parsedplan = parsedplan[:-2]
+            parsedPlan += "Group result by "
+            for groupKey in queryplan["Group Key"]:
+                parsedPlan += groupKey.replace("::text", "") + ", "
+            parsedPlan = parsedPlan[:-2]
         if "Filter" in queryplan:
-            parsedplan += " and bind them with the following condition(s) " + queryplan["Filter"].replace("::text", "")
-        parsedplan += "."
-        return parsedplan
+            parsedPlan += " and bind them with the following condition(s) " + queryplan["Filter"].replace("::text", "")
+        parsedPlan += "."
+        return parsedPlan
 
     if queryplan["Strategy"] == "Hashed":
-        text = Annotation.get_conjuction()
+        text = Annotation.getConjuction()
 
         if len(queryplan["Group Key"]) == 1:
             text += "All rows hashed based on the keys "
@@ -32,13 +32,13 @@ def AggregateAlgorithm(queryplan, isStart=False):
                 text += i.replace("::text", "") + ", "
         text += " and after processing, the desired row is returned"
 
-        parsedplan = Annotation.parse_plan(queryplan["Plans"][0], isStart)
-        parsedplan += " " + text
-        return parsedplan
+        parsedPlan = Annotation.parsePlan(queryplan["Plans"][0], isStart)
+        parsedPlan += " " + text
+        return parsedPlan
 
     if queryplan["Strategy"] == "Plain":
-        parsedplan = Annotation.parse_plan(queryplan["Plans"][0], isStart) + " "
-        parsedplan += Annotation.get_conjuction()
-        parsedplan += "Aggregate the result."
-        return parsedplan
+        parsedPlan = Annotation.parsePlan(queryplan["Plans"][0], isStart) + " "
+        parsedPlan += Annotation.getConjuction()
+        parsedPlan += "Aggregate the result."
+        return parsedPlan
 

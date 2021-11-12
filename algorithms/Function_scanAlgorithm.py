@@ -7,9 +7,9 @@ import Annotation
 
 def Function_scanAlgorithm(plan, start=False):
     """ Parser for Function Scan node type """
-    parsed_plan = Annotation.get_conjuction(start)
-    parsed_plan += "Executes function " + plan["Function Name"]
-    parsed_plan += " and returns the recordset created."
-    return parsed_plan
+    parsedPlan = Annotation.getConjuction(start)
+    parsedPlan += "Executes function " + plan["Function Name"]
+    parsedPlan += " and returns the recordset created."
+    return parsedPlan
 
 

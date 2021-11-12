@@ -7,7 +7,7 @@ import Annotation
 
 def Values_scanAlgorithm(plan, start=False):
     """ Value Scan Parser """
-    result = Annotation.get_conjuction(start)
+    result = Annotation.getConjuction(start)
     result += "It will perform a scan over the queried values."
 
     return result

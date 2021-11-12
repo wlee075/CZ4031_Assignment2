@@ -7,7 +7,7 @@ import Annotation
 
 def Cte_scanAlgorithm(plan, start=False):
     """ CTE Scan parser """
-    result = Annotation.get_conjuction(start)
+    result = Annotation.getConjuction(start)
 
     # Parse the values scan
     if plan["Node Type"] == "CTE Scan":

@@ -24,8 +24,8 @@ import algorithms.Subquery_scanAlgorithm as subquery_scan
 import algorithms.SetopAlgorithm as setop
 import algorithms.GroupAlgorithm as group
 
-class ParserSelector:
-    """ ParserSelectorClass """
+class selectParser:
+    """ selectParserClass """
     def __init__(self):
         """ Init Class """
         
@@ -51,30 +51,30 @@ class ParserSelector:
         self.SetOp = setop.SetopAlgorithm
         self.Group = group.GroupAlgorithm
 
-def parse_plan(plan, start=False):
+def parsePlan(plan, start=False):
 
     """ Parse json format of query plan """
     
-    selector = ParserSelector()
+    selector = selectParser()
     try:
         parser = getattr(selector, plan["Node Type"].replace(" ", "_"))
     except:
         parser = selector.GenericAlgorithm
-    parsed_plan = init_plan(plan, start)
-    parsed_plan += parser(plan, start)
-    return parsed_plan
+    parsedPlan = initPlan(plan, start)
+    parsedPlan += parser(plan, start)
+    return parsedPlan
 
-CONJUNCTION_LIST = ["Thereafter, ", "Then, ", "Next, ", "Subsequently, ", "Accordingly, "]
+LIST_OF_CONJUNCTION = ["Thereafter, ", "Then, ", "Next, ", "Subsequently, ", "Accordingly, "]
 
-def get_conjuction(start=False):
+def getConjuction(start=False):
 
     """ Get random conjuction """
     
     if start:
         return "First of all, "
-    return random.choice(CONJUNCTION_LIST)
+    return random.choice(LIST_OF_CONJUNCTION)
 
-def init_plan(plan, start=False):
+def initPlan(plan, start=False):
 
     """ Check for InitPlan """
     
@@ -82,7 +82,7 @@ def init_plan(plan, start=False):
 
     if "Parent Relationship" in plan:
         if plan["Parent Relationship"] == "InitPlan":
-            result = get_conjuction(start)
+            result = getConjuction(start)
             result += "The " + plan["Node Type"]
             result += " node and its subsequent child node will be executed first"
             result += " since the result from this node needs to be calculated initially"

@@ -11,11 +11,11 @@ def Merge_joinAlgorithm(plan, start=False):
 
     if 'Plans' in plan:
         for child in plan['Plans']:
-            result += Annotation.parse_plan(child, start) + " "
+            result += Annotation.parsePlan(child, start) + " "
             if start:
                 start = False
 
-    result += Annotation.get_conjuction(start)
+    result += Annotation.getConjuction(start)
     result += 'Merge Join is performed on the output'
 
     if 'Merge Cond' in plan:
