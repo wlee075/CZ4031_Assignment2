@@ -21,23 +21,3 @@ def SetopAlgorithm(plan, start=False):
     return result
 
 
-if __name__ == "__main__":
-    PLAN = '''
-    {                                           
-        "Node Type": "SetOp",                             
-        "Strategy": "Sorted",                             
-        "Parallel Aware": false,                          
-        "Command": "Except",                              
-        "Startup Cost": 659139.58,                        
-        "Total Cost": 668626.83,                          
-        "Plan Rows": 574989,                              
-        "Plan Width": 222,                                
-        "Plans": [                                        
-            {                                               
-                "Node Type": "Some Node Type"     
-            }
-        ]
-    }
-    '''
-    JSON_PLAN = json.loads(PLAN)
-    print(setopAlgorithm(JSON_PLAN, start=True))

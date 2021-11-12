@@ -64,14 +64,14 @@ def parse_plan(plan, start=False):
     parsed_plan += parser(plan, start)
     return parsed_plan
 
-CONJUNCTION_LIST = ["Next, ", "Afterwards, ", "Thereafter, ", "Subsequently, ", "Then, "]
+CONJUNCTION_LIST = ["Thereafter, ", "Then, ", "Next, ", "Subsequently, ", "Accordingly, "]
 
 def get_conjuction(start=False):
 
     """ Get random conjuction """
     
     if start:
-        return "Firstly, "
+        return "First of all, "
     return random.choice(CONJUNCTION_LIST)
 
 def init_plan(plan, start=False):
