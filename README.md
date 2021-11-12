@@ -18,38 +18,19 @@ Project 2 CZ4031 Nanyang Technological University. Script to generate and parse 
 
 **NOTES**: If you want to use queries from this repo make use to initialize the database using [init.sql](data/init.sql).
 
-#### Command Line Interface (CLI)
-
-##### Input: Query
-
-- Move to this directory
-- Execute `python explain_cli.py`
-- Enter query in CLI (end query with `;`)
-
-##### Input: Query Plan (JSON formatted file)
-
-- Move to this directory
-- Execute `python explain_cli.py [path_to_query_plan_json_file]` (e.g. `python explain_cli.py data/q1.json`)
-
 #### Graphical User Interface (GUI)
 
 - Move to this directory
-- Execute `python explain_app.py`
-- Enter `host`, `database`, `port`, `username` and `password`
+- Execute `python project.py`
+- Amend `host`, `database`, `port`, `username` and `password` if system settings differ from .config file
 - To generate query plan: Enter query in `Query` section and press `Explain`
 - To parse query plan: Enter query plan in `Query Plan` section or directly press `Parse`
-
-### Test
-
-#### Parser test
-
-To test the each individual parser. Just move to `algorithms/` and execute `python [parser_name].py`. It will run unit test in each parser.
 
 ## Source
 
 ### Query Executor
 
-Connect to PostgreSQL and act as backend of the CLI and GUI. Use query plan parser to generate parsed plan string.
+Connect to PostgreSQL and act as backend of the GUI. Generate parsed plan strings via the query plan parser.
 
 ### Query Plan Parser
 
